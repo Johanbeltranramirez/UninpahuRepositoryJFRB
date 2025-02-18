@@ -17,7 +17,7 @@ variance = sum((x - mean) ** 2 for x in values) / len(values)
 
 #resultados
 print(f"Valores: {values}")
-print(f"Media (μ): {mean}")
-print(f"Varianza (σ²): {variance}")
+print(f"Media {mean}")
+print(f"Varianza: {variance}")
 
 print(f"Promedio de la varianza: {variance}")
