@@ -1,5 +1,5 @@
 # Lista de nombres
-names = ["Juan", "Felipe", "Angie"]
+names = ["Johan", "Mateo", "Luisa"]
 
 
 for i in range(len(names)):
