@@ -1,36 +1,39 @@
-const heigths = [600, 470, 170, 430, 300]
+/**
+ * Calculates the average (mean) of an array of numbers
+ * @param {number[]} heights_puppies - Array of numbers representing heights
+ * @returns {number} - The average value
+ */
+function average(heights_puppies) {
+    let accumulator = 0;
+    const arrayLength = heights_puppies.length;
 
-function average (heights_puppies){
-    /*
-    This functions is used to  .....
-    @heights_puppies  => E float,   0 <= heights_puppies <= 500  
-    @ return 
-    
-    **/
-    
-    let acumulator = 0;
-    const array_length =  heights_puppies.length; 
-    
-    for(let i=0; i< heights_puppies.length; i++){
-        
-        acumulator +=  heights_puppies[i];
+    for (let i = 0; i < arrayLength; i++) {
+        accumulator += heights_puppies[i];
     }
-    
-    return acumulator/array_length;
-}
-function varianceFnc(numbers, average){
-    
-    let acumulator = 0; 
-    const numbersSize =  numbers.length; 
-    
-   for(let i=0; i< numbersSize; i++){
-        
-        acumulator = ((numbers[i] - average)**2) + acumulator;
-    }
-    
-    return acumulator/numbersSize;
-    
+
+    return accumulator / arrayLength;
 }
 
-const variance = varianceFnc(heigths, average(heigths));
-console.log("standard deviation: ", Math.sqrt(variance));
+/**
+ * Computes the variance of an array of numbers
+ * @param {number[]} numbers - Array of numbers
+ * @param {number} mean - The mean (average) value of the numbers
+ * @returns {number} The variance of the numbers
+ */
+function varianceFnc(numbers, mean) {
+    let accumulator = 0;
+    const numbersSize = numbers.length;
+
+    for (let i = 0; i < numbersSize; i++) {
+        accumulator += (numbers[i] - mean) ** 2;
+    }
+
+    return accumulator / numbersSize;
+}
+
+//Sample data
+const heights = [600, 470, 170, 430, 300];
+
+//Compute variance and standard deviation
+const variance = varianceFnc(heights, average(heights));
+console.log("Standard Deviation:", Math.sqrt(variance));
