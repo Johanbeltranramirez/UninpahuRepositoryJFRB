@@ -34,8 +34,8 @@ function varianceFnc(numbers, mean) {
 }
 
 //Sample data: heights in millimeters
-const heights = [600, 470, 170, 430, 300];
+let heights = [600, 470, 170, 430, 300];
 
 //Compute variance and standard deviation
-const variance = varianceFnc(heights, average(heights));
+let variance = varianceFnc(heights, average(heights));
 console.log("Standard Deviation:", Math.sqrt(variance)); //The compute of the standard deviation is the square root of the variance
