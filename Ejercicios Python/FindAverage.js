@@ -5,7 +5,7 @@
  */
 function average(heights) {
     let accumulator = 0; 
-    const arrayLength = heights.length; //Total number of elements in the array.
+    let arrayLength = heights.length; //Total number of elements in the array.
 
     for (let i = 0; i < arrayLength; i++) {
         accumulator += heights[i]; //Adds the current height value to the accumulator.
@@ -22,7 +22,7 @@ function average(heights) {
  */
 function varianceFnc(numbers, mean) {
     let accumulator = 0; 
-    const numbersSize = numbers.length;
+    let numbersSize = numbers.length;
 
     //Iterates through the array to calculate the sum of squared differences
     for (let i = 0; i < numbersSize; i++) {
@@ -36,5 +36,5 @@ function varianceFnc(numbers, mean) {
 let heights = [600, 470, 170, 430, 300];
 
 //Compute variance and standard deviation
-let variance = varianceFnc(heights, average(heights));
-console.log("Standard Deviation:", Math.sqrt(variance)); //The compute of the standard deviation is the square root of the variance
+const variance = varianceFnc(heights, average(heights));
+console.log("Standard Deviation:", Math.sqrt(variance)); //The compute of the standard deviation is the square root of the variance v
