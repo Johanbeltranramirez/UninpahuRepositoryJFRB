@@ -16,7 +16,6 @@ function average(heights) {
 
 /**
  * Computes the variance of a set of numbers
- * Variance measures the dispersion of data points relative to the mean
  * @param {number[]} numbers - Array of numbers for which variance will be calculated
  * @param {number} mean - The mean (average) value of the numbers
  * @returns {number} - The variance of the dataset
