@@ -1,5 +1,4 @@
 package Models;
-import java.util.Date;
 
 public class PresupuestoGeneral {
     private int id;
@@ -7,9 +6,9 @@ public class PresupuestoGeneral {
     private String descripcion;
     private double montoTotal;
     private String estado;  // "Borrador", "Aprobado", "Rechazado"
-    private Date fechaCreacion;
+    private String fechaCreacion;
 
-    public PresupuestoGeneral(int id, String nombre, String descripcion, double montoTotal, String estado, Date fechaCreacion) {
+    public PresupuestoGeneral(int id, String nombre, String descripcion, double montoTotal, String estado, String fechaCreacion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -34,7 +33,7 @@ public class PresupuestoGeneral {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
-    public Date getFechaCreacion() { return fechaCreacion; }
-    public void setFechaCreacion(Date fechaCreacion) { this.fechaCreacion = fechaCreacion; }
+    public String getFechaCreacion() { return fechaCreacion; }
+    public void setFechaCreacion(String fechaCreacion) { this.fechaCreacion = fechaCreacion; }
 }
 

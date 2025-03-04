@@ -1,17 +1,20 @@
 package Services;
 
+import DB.DataBase;
 import Models.Usuario;
-import DB.Database;
 
 public class UsuarioService {
-    private Database db;
+    private DataBase db;
 
     public UsuarioService() {
-        this.db = new Database();
+        this.db = new DataBase();
+        this.db.getUsuario();
+        
     }
+    public boolean agregarUsuario(Usuario nuevoUsuario) {
 
-    public boolean agregarUsuario(Usuario usuario) {
-        return db.getUsuario().add(usuario);  
+        return this.db.lstUsuarios.add(nuevoUsuario);
+
     }
 
     public Usuario obtenerUsuarioPorId(int id) {

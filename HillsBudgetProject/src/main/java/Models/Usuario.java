@@ -6,6 +6,9 @@ public class Usuario {
     private String email;
     private String rol; // "Administrador", "Finanzas", "Contable"
 
+    public Usuario(){
+    }
+    
     public Usuario(int id, String nombre, String email, String rol) {
         this.id = id;
         this.nombre = nombre;

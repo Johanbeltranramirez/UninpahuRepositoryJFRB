@@ -5,7 +5,7 @@ import Models.Aprobacion;
 import java.util.ArrayList;
 
 
-public class Database{
+public class DataBase{
     
     ArrayList<Usuario> lstUsuarios;
     ArrayList<PresupuestoGeneral> lstPresupuestos;
@@ -13,7 +13,7 @@ public class Database{
     
 
     
-    public Database(){
+    public DataBase(){
     }
     
     public void getUsuario(){
@@ -27,18 +27,15 @@ public class Database{
 
     }
     
-        public void getPresupuestoGeneral(){
+  public void getPresupuestoGeneral(){
         lstPresupuestos = new ArrayList<>();
         
-        lstPresupuestos.add(new PresupuestoGeneral(1, "Presupuesto 2025", "Presupuesto anual para operaciones generales", 50000, "Pendiente", '02/03/2025'));
+        lstPresupuestos.add(new PresupuestoGeneral(1, "Presupuesto 2025", "Presupuesto anual para operaciones generales", 6.2500, "Pendiente", "2025-03-25"));
+        
 
     }
         
-    public void getAprobaciones(){
-        lstAprobaciones = new ArrayList<>();
-        
-        lstAprobaciones.add(new Aprobacion(1, "Presupuesto 2025", 1, "pendiente" ));
-        
-    }
+    
+    
     
 }
