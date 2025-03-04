@@ -1,21 +1,21 @@
 package Services;
 
 import Models.Usuario;
-import DB.UsuarioDB;
+import DB.Database;
 
 public class UsuarioService {
-    private UsuarioDB dbUsuario;
+    private Database db;
 
     public UsuarioService() {
-        this.dbUsuario = new UsuarioDB();
+        this.db = new Database();
     }
 
     public boolean agregarUsuario(Usuario usuario) {
-        return dbUsuario.getUsuario().add(usuario);  
+        return db.getUsuario().add(usuario);  
     }
 
     public Usuario obtenerUsuarioPorId(int id) {
-        for (Usuario usuario : dbUsuario.getUsuario()) { // Accede correctamente a la lista
+        for (Usuario usuario : Usuario.getUsuario()) { 
             if (usuario.getId() == id) {
                 return usuario;
             }
@@ -35,10 +35,10 @@ public class UsuarioService {
     }
 
     public boolean eliminarUsuario(int id) {
-        return dbUsuario.getUsuario().removeIf(usuario -> usuario.getId() == id);
+        return db.getUsuario().removeIf(usuario -> usuario.getId() == id);
     }
 
     public boolean listarUsuarios() {
-        return dbUsuario.getUsuario();  
+        return db.getUsuario();  
     }
 }
