@@ -1,13 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DB;
 
-/**
- *
- * @author johan
- */
-public class AprobacionDB {
+import Models.Aprobacion;
+
+
+public class AprobacionDB{
+    
+    public Aprobacion[] ltsAprobacion;
+    
+    public AprobacionDB(){
+        ltsAprobacion = new Aprobacion[10];
+        this.getAprobaciones();
+    }
+    
+    public void getAprobaciones(){
+        Aprobacion aprobacion = new Aprobacion(1, "Presupuesto 2025", 1, "pendiente" );
+        
+    }
     
 }
