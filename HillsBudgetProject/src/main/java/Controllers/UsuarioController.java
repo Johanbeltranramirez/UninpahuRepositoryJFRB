@@ -38,21 +38,8 @@ public class UsuarioController {
         }
     }
 
-    public void obtenerUsuario(int id) {
-        Usuario usuario = usuarioService.obtenerUsuario(id);
-        if (usuario != null) {
-            System.out.println(usuario);
-        } else {
-            System.out.println("Usuario no encontrado.");
+    public void ObtenerUsuario(){
+        usuarioService.ObtenerUsuario();
         }
-    }
+ }
 
-    public void imprimirUsuarios() {
-        List<Usuario> usuarios = usuarioService.listarUsuarios();
-        if (usuarios.isEmpty()) {
-            System.out.println("No hay usuarios registrados.");
-        } else {
-            usuarios.forEach(System.out::println);
-        }
-    }
-}

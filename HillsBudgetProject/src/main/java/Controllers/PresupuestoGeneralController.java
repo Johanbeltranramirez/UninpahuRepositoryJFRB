@@ -20,8 +20,8 @@ public class PresupuestoGeneralController {
         }
     }
 
-    public void actualizarPresupuesto(PresupuestoGeneral presupuesto) {
-        boolean respuesta = presupuestoService.actualizarPresupuesto(presupuesto);
+    public void actualizarPresupuesto(PresupuestoGeneral editarPresupuesto) {
+        boolean respuesta = presupuestoService.actualizarPresupuesto(editarPresupuesto);
         if (respuesta) {
             System.out.println("Presupuesto actualizado con éxito.");
         } else {
@@ -38,21 +38,9 @@ public class PresupuestoGeneralController {
         }
     }
 
-    public void obtenerPresupuesto(int id) {
-        PresupuestoGeneral presupuesto = presupuestoService.obtenerPresupuesto(id);
-        if (presupuesto != null) {
-            System.out.println(presupuesto);
-        } else {
-            System.out.println("Presupuesto no encontrado.");
-        }
+    public void ObtenerLista() {
+        presupuestoService.ObtenerLista();
     }
 
-    public void imprimirPresupuestos() {
-        List<PresupuestoGeneral> presupuestos = presupuestoService.listarPresupuestos();
-        if (presupuestos.isEmpty()) {
-            System.out.println("No hay presupuestos registrados.");
-        } else {
-            presupuestos.forEach(System.out::println);
-        }
-    }
+    
 }

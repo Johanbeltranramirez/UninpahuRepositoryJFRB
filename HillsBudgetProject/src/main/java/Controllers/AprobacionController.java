@@ -20,14 +20,14 @@ public class AprobacionController {
         }
     }
 
-    public void actualizarAprobacion(Aprobacion aprobacion) {
+   /* public void actualizarAprobacion(Aprobacion aprobacion) {
         boolean respuesta = aprobacionService.actualizarAprobacion(aprobacion);
         if (respuesta) {
             System.out.println("Aprobación actualizada con éxito.");
         } else {
             System.out.println("Error al actualizar aprobación. Contacte al administrador.");
         }
-    }
+    }*/
 
     public void eliminarAprobacion(int id) {
         boolean respuesta = aprobacionService.eliminarAprobacion(id);
@@ -38,7 +38,7 @@ public class AprobacionController {
         }
     }
 
-    public void obtenerAprobacion(int id) {
+    /*public void obtenerAprobacion(int id) {
         Aprobacion aprobacion = aprobacionService.obtenerAprobacion(id);
         if (aprobacion != null) {
             System.out.println(aprobacion);
@@ -54,5 +54,5 @@ public class AprobacionController {
         } else {
             aprobaciones.forEach(System.out::println);
         }
-    }
+    }*/
 }

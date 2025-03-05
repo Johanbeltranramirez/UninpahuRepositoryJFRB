@@ -1,22 +1,22 @@
 package Services;
 
 import Models.Aprobacion;
-import DB.AprobacionDB;
+import DB.DataBase;
 import java.util.Date;
 
 public class AprobacionService {
-    private AprobacionDB dbAprobacion;
+    private DataBase db;
 
-    public AprobacionService(AprobacionDB db) {
-        this.dbAprobacion = new AprobacionDB();
+    public AprobacionService() {
+        this.db = new DataBase();
     }
 
-    public boolean agregarAprobacion(Aprobacion aprobacion) {
-        return dbAprobacion.getAprobaciones().add(aprobacion);  // Accede a la DB
+    public boolean agregarAprobacion(Aprobacion nuevaAprobacion) {
+        return this.db.lstAprobaciones.add(nuevaAprobacion);
     }
 
-    public Aprobacion obtenerAprobacionPorId(int id) {
-        for (Aprobacion aprobacion : dbAprobacion.getAprobaciones()) {
+   /* public Aprobacion obtenerAprobacionPorId(int id) {
+        for (Aprobacion aprobacion : db.getAprobaciones()) {
             if (aprobacion.getId() == id) {
                 return aprobacion;
             }
@@ -24,7 +24,7 @@ public class AprobacionService {
         return null;
     }
 
-    public boolean actualizarAprobacion(int id, String estado, String comentarios, Date fechaAprobacion) {
+    public boolean actualizarAprobacion(int id, String estado, String comentarios, String fechaAprobacion) {
         Aprobacion aprobacion = obtenerAprobacionPorId(id);
         if (aprobacion != null) {
             aprobacion.setEstado(estado);
@@ -33,13 +33,22 @@ public class AprobacionService {
             return true;
         }
         return false;
-    }
+    }*/
 
     public boolean eliminarAprobacion(int id) {
-        return dbAprobacion.getAprobaciones().removeIf(aprobacion -> aprobacion.getId() == id);
+        boolean respuesta =false;
+        
+        for(int i = 0; i < this.db.lstAprobaciones.size(); i++){
+            if (this.db.lstAprobaciones.get(i) !=null && this.db.lstAprobaciones.get(i).getId() == id){
+                this.db.lstAprobaciones.remove(i);
+                respuesta = true;
+                break;
+            }
+        }
+       return respuesta;
     }
-
-    public boolean listarAprobaciones() {
-        return dbAprobacion.getAprobaciones();
-    }
+    
+    /*public boolean listarAprobaciones() {
+        return db.lstAprobaciones();
+    }*/
 }

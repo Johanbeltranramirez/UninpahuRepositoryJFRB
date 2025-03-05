@@ -7,9 +7,9 @@ public class Aprobacion {
     public Usuario usuario;         //Referencia a Usuario
     private String estado;           // "Pendiente", "Aprobado", "Rechazado"
     private String comentarios;
-    private Date fechaAprobacion;
+    private String fechaAprobacion;
 
-    public Aprobacion(int id, PresupuestoGeneral presupuesto, Usuario usuario, String estado, String comentarios, Date fechaAprobacion) {
+    public Aprobacion(int id, PresupuestoGeneral presupuesto, Usuario usuario, String estado, String comentarios, String fechaAprobacion) {
         this.id = id;
         this.presupuesto = presupuesto;
         this.usuario = usuario;
@@ -28,6 +28,6 @@ public class Aprobacion {
     public String getComentarios() { return comentarios; }
     public void setComentarios(String comentarios) { this.comentarios = comentarios; }
 
-    public Date getFechaAprobacion() { return fechaAprobacion; }
-    public void setFechaAprobacion(Date fechaAprobacion) { this.fechaAprobacion = fechaAprobacion; }
+    public String getFechaAprobacion() { return fechaAprobacion; }
+    public void setFechaAprobacion(String fechaAprobacion) { this.fechaAprobacion = fechaAprobacion; }
 }
