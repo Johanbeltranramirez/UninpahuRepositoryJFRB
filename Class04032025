@@ -1,0 +1,26 @@
+//let a = input("Escriba un número: ")
+let a = 4
+
+function miFuncionxdxd() {
+    return a * a;
+    
+}
+const result = miFuncionxdxd()
+
+console.log(result)
+
+function itWillBeMyParner(
+    hasCar,
+    hasMoney,
+    isPrettyOrHandsome
+    
+    ) {
+    /**
+        *This function is used to know if someone can be your parner
+        * Sit funner nas utile ad flet jhi hackit sand let utt pagnet
+        * @param {hasCar: int}
+        * @param {moneyInHisPockets: float} E eal set. moneyInHisPockets > 200USD
+        * @return: string "yes"|"not"|"maybe"
+    */
+    
+}
