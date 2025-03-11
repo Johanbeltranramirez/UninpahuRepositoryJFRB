@@ -1,0 +1,74 @@
+package Services;
+
+import DB.DataBaseSQL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import Models.Usuario;
+
+public class UsuarioService {
+    private DataBaseSQL db;
+
+    public UsuarioService() {
+        this.db = new DataBase();
+        this.db.getUsuario();
+        
+    }
+    public void agregarUsuario(Usuario usuario) {
+
+        Connection conex = DataBaseSQL.Conectar();
+        String sql = "INSERT INTO Usuario VALUES())";
+        
+        try (PreparedStatement stmt = conex.prepareStatement(sql)){
+            stmt.setInt(1, usuario.getId());
+            stmt.setString(2, usuario.getNombre());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(2, usuario.getNombre());
+        }
+    }    
+     public void ObtenerUsuario() {
+        System.out.println("-------------------------------------------------");
+        for (int i = 0; i < this.db.lstUsuarios.size(); i++) {
+
+            if (this.db.lstUsuarios.get(i) != null) {
+
+                System.out.println("id: " + this.db.lstUsuarios.get(i).getId());
+                System.out.println("Nombre: " + this.db.lstUsuarios.get(i).getNombre());
+                System.out.println("Email: " + this.db.lstUsuarios.get(i).getEmail());
+                System.out.println("Rol: " + this.db.lstUsuarios.get(i).getRol());
+                System.out.println("");
+
+            }
+
+        }
+        System.out.println("---------------------------------------------------");
+    }
+
+    public boolean actualizarUsuario(Usuario editarUsuario) {
+        boolean respuesta = false;
+        for (int i = 0; i < this.db.lstUsuarios.size(); i++){
+            if (this.db.lstUsuarios.get(i) != null && this.db.lstUsuarios.get(i).getId() == editarUsuario.getId()) {
+
+                this.db.lstUsuarios.set(i, editarUsuario);
+                respuesta = true;
+                break;
+            }
+        }
+        return respuesta;
+       }    
+    
+   
+     public boolean eliminarUsuario(int id) {
+        boolean respuesta =false;
+        
+        for(int i = 0; i < this.db.lstUsuarios.size(); i++){
+            if (this.db.lstUsuarios.get(i) !=null && this.db.lstUsuarios.get(i).getId() == id){
+                this.db.lstUsuarios.remove(i);
+                respuesta = true;
+                break;
+            }
+        }
+       return respuesta;
+     }
+
+}
