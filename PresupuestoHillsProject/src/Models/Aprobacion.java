@@ -1,5 +1,7 @@
 package Models;
 import Models.Usuario;
+import Models.PresupuestoGeneral;
+import Models.EstadoAprobacion;
 import java.util.Date;
 
 public class Aprobacion {
