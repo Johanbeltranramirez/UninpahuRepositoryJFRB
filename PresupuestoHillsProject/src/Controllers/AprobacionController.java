@@ -1,7 +1,10 @@
 package Controllers;
 
 import Models.Aprobacion;
+import Models.EstadoAprobacion;
 import Services.AprobacionService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AprobacionController {
@@ -20,14 +23,8 @@ public class AprobacionController {
         }
     }
 
-    public void actualizarAprobacion(Aprobacion aprobacion) {
-        boolean respuesta = aprobacionService.actualizarAprobacion(
-            aprobacion.getId(), 
-            aprobacion.getEstado(), 
-            aprobacion.getComentarios(), 
-            aprobacion.getFechaAprobacion()
-        );
-
+    public void actualizarAprobacion(int id, EstadoAprobacion estado, String comentarios, String fechaStr) {
+        boolean respuesta = aprobacionService.actualizarAprobacion(id, estado, comentarios, fechaStr);
         if (respuesta) {
             System.out.println("Aprobación actualizada con éxito.");
         } else {
@@ -53,7 +50,7 @@ public class AprobacionController {
         }
     }
 
-    public void imprimirAprobaciones() {
+    public void listarAprobaciones() {
         List<Aprobacion> aprobaciones = aprobacionService.listarAprobaciones();
         if (aprobaciones.isEmpty()) {
             System.out.println("No hay aprobaciones registradas.");

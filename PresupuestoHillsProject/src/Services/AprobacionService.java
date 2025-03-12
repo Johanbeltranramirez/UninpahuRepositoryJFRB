@@ -1,7 +1,11 @@
 package Services;
 
 import Models.Aprobacion;
+import Models.EstadoAprobacion;
 import DB.DataBase;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AprobacionService {
@@ -9,7 +13,7 @@ public class AprobacionService {
 
     public AprobacionService() {
         this.db = new DataBase();
-        this.db.getAprobaciones(); 
+        this.db.getAprobaciones();
     }
 
     public boolean agregarAprobacion(Aprobacion nuevaAprobacion) {
@@ -25,25 +29,31 @@ public class AprobacionService {
         return null;
     }
 
-    public boolean actualizarAprobacion(int id, String estado, String comentarios, String fechaAprobacion) {
+    public boolean actualizarAprobacion(int id, EstadoAprobacion estado, String comentarios, String fechaStr) {
         Aprobacion aprobacion = obtenerAprobacionPorId(id);
-        if (aprobacion != null) {
-            aprobacion.setEstado(estado);
-            aprobacion.setComentarios(comentarios);
-            aprobacion.setFechaAprobacion(fechaAprobacion);
-            return true;
+        if (aprobacion == null) {
+            System.out.println("Error: No se encontró la aprobación con ID " + id);
+            return false;
         }
-        return false;
+
+        aprobacion.setComentarios(comentarios);
+
+        // Convertir String a Date
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaAprobacion = sdf.parse(fechaStr);
+            aprobacion.setFechaAprobacion(fechaAprobacion);
+        } catch (ParseException e) {
+            System.out.println("Error al convertir la fecha: " + e.getMessage());
+            return false;
+        }
+
+        aprobacion.estado = estado; // Asignación directa al atributo público
+        return true;
     }
 
     public boolean eliminarAprobacion(int id) {
-        for (int i = 0; i < this.db.lstAprobaciones.size(); i++) {
-            if (this.db.lstAprobaciones.get(i) != null && this.db.lstAprobaciones.get(i).getId() == id) {
-                this.db.lstAprobaciones.remove(i);
-                return true;
-            }
-        }
-        return false;
+        return this.db.lstAprobaciones.removeIf(aprobacion -> aprobacion.getId() == id);
     }
 
     public List<Aprobacion> listarAprobaciones() {

@@ -1,71 +1,55 @@
 package Services;
 
 import Models.PresupuestoGeneral;
-import DB.DataBase;
+import Models.EstadoPresupuesto;
+import Models.CategoriaPresupuesto;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class PresupuestoGeneralService {
-    private DataBase db;
+    private List<PresupuestoGeneral> presupuestos;
 
     public PresupuestoGeneralService() {
-        this.db = new DataBase();
-        this.db.getPresupuestoGeneral();
+        this.presupuestos = new ArrayList<>();
     }
 
     public boolean agregarPresupuesto(PresupuestoGeneral presupuesto) {
-        return db.lstPresupuestos.add(presupuesto);
-    }
-    
-     public void ObtenerLista() {
-        System.out.println("-------------------------------------------------");
-        for (int i = 0; i < this.db.lstPresupuestos.size(); i++) {
-
-            if (this.db.lstPresupuestos.get(i) != null) {
-
-                System.out.println("id: " + this.db.lstPresupuestos.get(i).getId());
-                System.out.println("Nombre: " + this.db.lstPresupuestos.get(i).getNombre());
-                System.out.println("Descripcion: " + this.db.lstPresupuestos.get(i).getDescripcion());
-                System.out.println("montoTotal: " + this.db.lstPresupuestos.get(i).getMontoTotal());
-                System.out.println("Estado: " + this.db.lstPresupuestos.get(i).getEstado());
-                System.out.println("fechaCreacuion: " + this.db.lstPresupuestos.get(i).getFechaCreacion());
-                System.out.println("");
-
-            }
-
+        if (presupuesto == null) {
+            return false;
         }
-        System.out.println("---------------------------------------------------");
+        return presupuestos.add(presupuesto);
     }
 
-    
-
-    public boolean actualizarPresupuesto(PresupuestoGeneral editarPresupuesto) {
-
-        boolean respuesta = false;
-
-        for (int i = 0; i < this.db.lstPresupuestos.size(); i++) {
-            if (this.db.lstPresupuestos.get(i) != null && this.db.lstPresupuestos.get(i).getId() == editarPresupuesto.getId()) {
-
-                this.db.lstPresupuestos.set(i, editarPresupuesto);
-                respuesta = true;
-                break;
+    public boolean actualizarPresupuesto(int id, String nombre, String descripcion, double montoTotal, EstadoPresupuesto estado, CategoriaPresupuesto categoria, Date fechaCreacion) {
+        for (PresupuestoGeneral presupuesto : presupuestos) {
+            if (presupuesto.getId() == id) {
+                presupuesto.setNombre(nombre);
+                presupuesto.setDescripcion(descripcion);
+                presupuesto.setMontoTotal(montoTotal);
+                presupuesto.estado = estado;
+                presupuesto.categoria = categoria;
+                presupuesto.setFechaCreacion(fechaCreacion);
+                return true;
             }
         }
-
-        return respuesta;
+        return false;
     }
 
     public boolean eliminarPresupuesto(int id) {
-        boolean respuesta =false;
-        
-        for(int i = 0; i < this.db.lstPresupuestos.size(); i++){
-            if (this.db.lstPresupuestos.get(i) !=null && this.db.lstPresupuestos.get(i).getId() == id){
-                this.db.lstPresupuestos.remove(i);
-                respuesta = true;
-                break;
+        return presupuestos.removeIf(presupuesto -> presupuesto.getId() == id);
+    }
+
+    public PresupuestoGeneral obtenerPresupuestoPorId(int id) {
+        for (PresupuestoGeneral presupuesto : presupuestos) {
+            if (presupuesto.getId() == id) {
+                return presupuesto;
             }
         }
-       return respuesta;
+        return null;
     }
-    
-}
 
-    
+    public List<PresupuestoGeneral> listarPresupuestos() {
+        return new ArrayList<>(presupuestos);
+    }
+}
