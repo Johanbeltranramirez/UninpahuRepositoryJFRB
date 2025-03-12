@@ -1,0 +1,78 @@
+CREATE DATABASE PresupuestoDB;
+
+CREATE TABLE Rol (
+    id SERIAL PRIMARY KEY,
+    descRol VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Usuario (
+    id SERIAL PRIMARY KEY,
+    nDocId VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    rol_id INT NOT NULL,
+    FOREIGN KEY (rol_id) REFERENCES Rol(id)
+);
+
+CREATE TABLE TipoPartida (
+    id SERIAL PRIMARY KEY,
+    descTipo VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE EstadoPresupuesto (
+    id SERIAL PRIMARY KEY,
+    descEstado VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE EstadoAprobacion (
+    id SERIAL PRIMARY KEY,
+    descEstado VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE CategoriaPresupuesto (
+    id SERIAL PRIMARY KEY,
+    nombreCategoria VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE PresupuestoGeneral (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    montoTotal DECIMAL(15,2) NOT NULL,
+    estado_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    fechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (estado_id) REFERENCES EstadoPresupuesto(id),
+    FOREIGN KEY (categoria_id) REFERENCES CategoriaPresupuesto(id)
+);
+
+CREATE TABLE PartidaPresupuestaria (
+    id SERIAL PRIMARY KEY,
+    categoria_id INT NOT NULL,
+    descripcion TEXT NOT NULL,
+    monto DECIMAL(15,2) NOT NULL,
+    tipo_id INT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (categoria_id) REFERENCES CategoriaPresupuesto(id),
+    FOREIGN KEY (tipo_id) REFERENCES TipoPartida(id)
+);
+
+CREATE TABLE EjecucionPresupuestaria (
+    id SERIAL PRIMARY KEY,
+    partida_id INT NOT NULL,
+    montoReal DECIMAL(15,2) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (partida_id) REFERENCES PartidaPresupuestaria(id)
+);
+
+CREATE TABLE Aprobacion (
+    id SERIAL PRIMARY KEY,
+    presupuesto_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    estado_id INT NOT NULL,
+    comentarios TEXT,
+    fechaAprobacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (presupuesto_id) REFERENCES PresupuestoGeneral(id),
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (estado_id) REFERENCES EstadoAprobacion(id)
+);
