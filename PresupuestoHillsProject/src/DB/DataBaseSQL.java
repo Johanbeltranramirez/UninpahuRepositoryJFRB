@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DataBaseSQL {
     
-    private static final String url = "jdbc:mysql://localhost/3306/PresupuestoDB";
+    private static final String url = "jdbc:mysql://localhost/3306/presupuestodb";
     private static final String  usuario = "root"; 
     private static final String  clave = ""; 
     
