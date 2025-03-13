@@ -1,8 +1,8 @@
 package Services;
-
+import DB.DataBaseSQL;
+import java.sql.Connection;
 import Models.Aprobacion;
 import Models.EstadoAprobacion;
-import DB.DataBase;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

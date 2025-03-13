@@ -1,5 +1,6 @@
 package Services;
-
+import DB.DataBaseSQL;
+import java.sql.Connection;
 import Models.EstadoAprobacion;
 import java.util.ArrayList;
 import java.util.List;

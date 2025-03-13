@@ -1,21 +1,22 @@
 package Services;
-
+import DB.DataBaseSQL;
+import java.sql.Connection;
 import Models.EstadoPresupuesto;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EstadoPresupuestoService {
-    private List<EstadoPresupuesto> estados;
 
-    public EstadoPresupuestoService() {
-        this.estados = new ArrayList<>();
-    }
-
-    public boolean agregarEstado(EstadoPresupuesto estado) {
-        if (estado == null) {
-            return false;
+    public void agregarEstado(EstadoPresupuesto estado) {
+        Connection conexion = DataBaseSQL.Conectar ();
+        
+        String sql = "INSERT INTO EstadoPresupuesto (id, descEstado) VALUES (?,?)";
+        
+        try (PreparedStatement stmt = conexion.preparedStatement(sql)) {
+            stmt setInt = (1, estado.getId());
+            stmt setInt = (2, estado.getId());
+        
         }
-        return estados.add(estado);
     }
 
     public boolean actualizarEstado(int id, String nuevaDescripcion) {
