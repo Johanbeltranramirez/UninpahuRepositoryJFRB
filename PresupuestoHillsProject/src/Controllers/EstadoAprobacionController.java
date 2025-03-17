@@ -1,13 +1,12 @@
 package Controllers;
 import Models.EstadoAprobacion;
 import Services.EstadoAprobacionService;
-import java.util.List;
 
 public class EstadoAprobacionController {
-    private EstadoAprobacionService estadoService;
+    public EstadoAprobacionService estadoService;
 
-    public EstadoAprobacionController(EstadoAprobacionService estadoService) {
-        this.estadoService = estadoService;
+    public EstadoAprobacionController() {
+        this.estadoService = new EstadoAprobacionService ();
     }
 
     public void insertarEstado(EstadoAprobacion estado) {

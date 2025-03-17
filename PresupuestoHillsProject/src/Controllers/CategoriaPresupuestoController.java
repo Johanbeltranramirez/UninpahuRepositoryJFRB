@@ -1,13 +1,12 @@
 package Controllers;
 import Models.CategoriaPresupuesto;
 import Services.CategoriaPresupuestoService;
-import java.util.List;
 
 public class CategoriaPresupuestoController {
-    private CategoriaPresupuestoService categoriaService;
+    public CategoriaPresupuestoService categoriaService;
 
-    public CategoriaPresupuestoController(CategoriaPresupuestoService categoriaService) {
-        this.categoriaService = categoriaService;
+    public CategoriaPresupuestoController() {
+        this.categoriaService = new CategoriaPresupuestoService ();
     }
 
     public void insertarCategoria(CategoriaPresupuesto categoria) {

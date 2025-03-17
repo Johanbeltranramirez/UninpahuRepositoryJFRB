@@ -3,17 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/AprobacionService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/EjecucionPresupuestariaService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/CategoriaPresupuestoService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/EstadoPresupuestoService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/UsuarioService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/PartidaPresupuestariaService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/TipoPartidaService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/PresupuestoGeneralService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/DB/DataBaseSQL.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/EstadoAprobacionService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/RolService.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Controllers/EjecucionPresupuestariaController.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Controllers/AprobacionController.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Main/Main.java</file>
         </group>
     </open-files>
 </project-private>

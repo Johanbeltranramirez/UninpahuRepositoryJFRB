@@ -1,13 +1,12 @@
 package Controllers;
 import Models.EstadoPresupuesto;
 import Services.EstadoPresupuestoService;
-import java.util.List;
 
 public class EstadoPresupuestoController {
-    private EstadoPresupuestoService estadoService;
+    public EstadoPresupuestoService estadoService;
 
-    public EstadoPresupuestoController(EstadoPresupuestoService estadoService) {
-        this.estadoService = estadoService;
+    public EstadoPresupuestoController() {
+        this.estadoService = new EstadoPresupuestoService ();
     }
 
     public void insertarEstado(EstadoPresupuesto estado) {

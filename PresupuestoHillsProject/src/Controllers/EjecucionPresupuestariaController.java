@@ -2,13 +2,12 @@ package Controllers;
 import Models.EjecucionPresupuestaria;
 import Services.EjecucionPresupuestariaService;
 import java.util.Date;
-import java.util.List;
 
 public class EjecucionPresupuestariaController {
-    private EjecucionPresupuestariaService ejecucionService;
+    public EjecucionPresupuestariaService ejecucionService;
 
-    public EjecucionPresupuestariaController(EjecucionPresupuestariaService ejecucionService) {
-        this.ejecucionService = ejecucionService;
+    public EjecucionPresupuestariaController() {
+        this.ejecucionService = new EjecucionPresupuestariaService ();
     }
 
     public void insertarEjecucion(EjecucionPresupuestaria ejecucion) {

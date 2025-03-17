@@ -2,16 +2,15 @@ package Controllers;
 import Models.Aprobacion;
 import Services.AprobacionService;
 import java.util.Date;
-import java.util.List;
 
 public class AprobacionController {
-    private AprobacionService aprobacionService;
+    public AprobacionService aprobacionService;
 
-    public AprobacionController(AprobacionService categoriaService) {
-        this.aprobacionService = aprobacionService;
+    public AprobacionController() {
+        this.aprobacionService = new AprobacionService();
     }
 
-    public void insertarCategoria(Aprobacion aprobacion) {
+    public void insertarAprobacion(Aprobacion aprobacion) {
         if (aprobacion == null) {
             System.err.println("Error: La aprobación no puede ser nula.");
             return;
@@ -21,7 +20,7 @@ public class AprobacionController {
         System.out.println("Categoría registrada con éxito.");
     }
 
-    public void actualizarCategoria(Aprobacion aprobacion) {
+    public void actualizarAprobacion(Aprobacion aprobacion) {
         aprobacionService.EditarAprobacion(aprobacion);
         System.out.println("Categoría actualizada con éxito.");
     }
@@ -31,7 +30,7 @@ public class AprobacionController {
         System.out.println("Categoría eliminada correctamente.");
     }
 
-    public void listarCategorias() {
+    public void listarAprobacion() {
         aprobacionService.MostrarAprobaciones();
     }
 }
