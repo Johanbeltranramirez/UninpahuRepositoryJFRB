@@ -9,7 +9,7 @@ public class TipoPartida {
         this.descTipo = descTipo;
     }
 
-    public int getId() {
+    public int getTipoId() {
         return id;
     }
 

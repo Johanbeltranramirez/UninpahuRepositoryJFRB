@@ -1,47 +1,79 @@
 package Services;
 
 import Models.Rol;
-import java.util.ArrayList;
-import java.util.List;
+import DB.DataBaseSQL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
 
 public class RolService {
-    private List<Rol> roles;
-
-    public RolService() {
-        this.roles = new ArrayList<>();
-    }
-
-    public boolean agregarRol(Rol rol) {
-        if (rol == null) {
-            return false;
+    public void AgregarRol(Rol rol){
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql="INSETR INTO Rol (id, descRol) VALUES (?,?)";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, rol.getRolId());
+            stmt.setString(2, rol.getDescRol());
+            System.out.println("El Rol se registró correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al registrar el rol " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
         }
-        return roles.add(rol);
     }
+    
+    public void EliminarRol(int id) {
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "DELETE FROM Rol WHERE id =  ?";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+         stmt.setInt(1, id);
+         stmt.executeUpdate();
+         System.out.println("El rol se eliminó correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al eliminar el rol" + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
+        }
+    }
+    
+     public void EditarRol(Rol rol) {
+         Connection conexion = DataBaseSQL.Conectar();
+        String sql = "UPDATE Rol SET getDescRol=? WHERE id = ?";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, rol.getRolId());
+            stmt.setString(2, rol.getDescRol());
+            stmt.executeUpdate();
+            System.out.println("El Rol se editó correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al editar el rol" + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
+        }
+            
+     }
 
-    public boolean actualizarRol(int id, String descRol) {
-        for (Rol rol : roles) {
-            if (rol.getId() == id) {
-                rol.setDescRol(descRol);
-                return true;
+    public void MostrarRoles(){
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "SELECT * FROM Rol";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String descTipo = rs.getString(2);
+                
+                System.out.println("ID: " + id);
+                System.out.println("descTipo: " + descTipo);
+                System.out.println("-------------------");
             }
+          } catch (SQLException e) {
+            System.out.println("ERROR: Al consultar tipo partida " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
         }
-        return false;
-    }
-
-    public boolean eliminarRol(int id) {
-        return roles.removeIf(rol -> rol.getId() == id);
-    }
-
-    public Rol obtenerRolPorId(int id) {
-        for (Rol rol : roles) {
-            if (rol.getId() == id) {
-                return rol;
-            }
-        }
-        return null;
-    }
-
-    public List<Rol> listarRoles() {
-        return new ArrayList<>(roles);
     }
 }

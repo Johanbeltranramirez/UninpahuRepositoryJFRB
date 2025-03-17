@@ -1,17 +1,14 @@
 package Controllers;
 
 import Models.PartidaPresupuestaria;
-import Models.CategoriaPresupuesto;
-import Models.TipoPartida;
 import Services.PartidaPresupuestariaService;
 import java.util.Date;
-import java.util.List;
 
 public class PartidaPresupuestariaController {
     private PartidaPresupuestariaService partidaService;
 
-    public PartidaPresupuestariaController(PartidaPresupuestariaService partidaService) {
-        this.partidaService = partidaService;
+    public PartidaPresupuestariaController() {
+        this.partidaService = new PartidaPresupuestariaService();
     }
 
     public void insertarPartida(PartidaPresupuestaria partida) {
@@ -20,49 +17,21 @@ public class PartidaPresupuestariaController {
             return;
         }
 
-        boolean respuesta = partidaService.agregarPartida(partida);
-        if (respuesta) {
-            System.out.println("Partida presupuestaria registrada con éxito.");
-        } else {
-            System.err.println("Error al registrar la partida. Contacte al administrador.");
-        }
+        partidaService.agregarPartida(partida);
+        System.out.println("Partida presupuestaria registrada con éxito.");
     }
 
-    public void actualizarPartida(int id, CategoriaPresupuesto categoria, String descripcion, double monto, TipoPartida tipo, Date fecha) {
-        boolean respuesta = partidaService.actualizarPartida(id, categoria, descripcion, monto, tipo, fecha);
-        if (respuesta) {
-            System.out.println("Partida presupuestaria actualizada con éxito.");
-        } else {
-            System.err.println("Error al actualizar la partida. Contacte al administrador.");
-        }
+    public void actualizarPartida(PartidaPresupuestaria partida) {        
+        partidaService.editarPartida(partida);
+        System.out.println("Partida presupuestaria actualizada con éxito.");
     }
 
     public void eliminarPartida(int id) {
-        boolean respuesta = partidaService.eliminarPartida(id);
-        if (respuesta) {
-            System.out.println("Partida presupuestaria eliminada correctamente.");
-        } else {
-            System.err.println("Error al eliminar la partida. Contacte al administrador.");
-        }
-    }
-
-    public void obtenerPartida(int id) {
-        PartidaPresupuestaria partida = partidaService.obtenerPartidaPorId(id);
-        if (partida != null) {
-            System.out.println("Partida encontrada: " + partida.getDescripcion() + ", Monto: " + partida.getMonto());
-        } else {
-            System.err.println("No se encontró la partida con ID: " + id);
-        }
+        partidaService.eliminarPartida(id);
+        System.out.println("Partida presupuestaria eliminada correctamente.");
     }
 
     public void listarPartidas() {
-        List<PartidaPresupuestaria> partidas = partidaService.listarPartidas();
-        if (partidas.isEmpty()) {
-            System.out.println("No hay partidas presupuestarias registradas.");
-        } else {
-            for (PartidaPresupuestaria partida : partidas) {
-                System.out.println("ID: " + partida.getId() + ", Descripción: " + partida.getDescripcion() + ", Monto: " + partida.getMonto());
-            }
-        }
-    }
+        partidaService.MostrarPaertidas();
+     }
 }

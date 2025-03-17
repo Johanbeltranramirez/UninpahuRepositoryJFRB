@@ -1,47 +1,83 @@
 package Services;
 
 import Models.TipoPartida;
-import java.util.ArrayList;
-import java.util.List;
+import DB.DataBaseSQL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+
 
 public class TipoPartidaService {
-    private List<TipoPartida> tiposPartida;
+    
+   public void agregarTipoPartida( TipoPartida tipopartida){
+       Connection conexion = DataBaseSQL.Conectar();
+       String sql = "INSERT INTO tipopartida(id, descTipo) VALUES (?, ?)";
+       
+       try(PreparedStatement stmt = conexion.prepareStatement(sql)) {
+           stmt.setInt(1, tipopartida.getTipoId());
+           stmt.setString(2, tipopartida.getDescTipo());
+           stmt.executeUpdate();
+           System.out.println("El estado del tipo de partida se registró correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al registrar de tipo de partida " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
+       }
+   }
 
-    public TipoPartidaService() {
-        this.tiposPartida = new ArrayList<>();
-    }
-
-    public boolean agregarTipoPartida(TipoPartida tipo) {
-        if (tipo == null) {
-            return false;
+   public void EliminarTipoPartida(int id) {
+       Connection conexion = DataBaseSQL.Conectar();
+       String sql = "DELETE FROM tipopartida WHERE id = ?";
+       
+       try( PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("El tipo partida se eliminó correctamente");
+       }
+       catch (SQLException e) {
+            System.out.println("ERROR: Al eliminar tipo partida " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
         }
-        return tiposPartida.add(tipo);
+   }
+   
+   public void EditarTipoPartida(TipoPartida tipopartida){
+       Connection conexion = DataBaseSQL.Conectar();
+       String sql = "UPDATE tipoapartida SET desTipo = ? WHERE id = ?";
+       
+       try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+          stmt.setString(1, tipopartida.getDescTipo()); 
+          stmt.setInt(2, tipopartida.getTipoId());
+          stmt.executeUpdate();
+            System.out.println("El tipo partida se editó correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al editar tipo de partida " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
+       }
     }
-
-    public boolean actualizarTipoPartida(int id, String descTipo) {
-        for (TipoPartida tipo : tiposPartida) {
-            if (tipo.getId() == id) {
-                tipo.setDescTipo(descTipo);
-                return true;
+   
+    public void MostrarTipoPartidas() {
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "SELECT * FROM tipopartida";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String descTipo = rs.getString(2);
+                
+                System.out.println("ID: " + id);
+                System.out.println("descTipo: " + descTipo);
             }
+          } catch (SQLException e) {
+            System.out.println("ERROR: Al consultar tipo partida " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
         }
-        return false;
-    }
-
-    public boolean eliminarTipoPartida(int id) {
-        return tiposPartida.removeIf(tipo -> tipo.getId() == id);
-    }
-
-    public TipoPartida obtenerTipoPartidaPorId(int id) {
-        for (TipoPartida tipo : tiposPartida) {
-            if (tipo.getId() == id) {
-                return tipo;
-            }
-        }
-        return null;
-    }
-
-    public List<TipoPartida> listarTiposPartida() {
-        return new ArrayList<>(tiposPartida);
     }
 }
+    
+

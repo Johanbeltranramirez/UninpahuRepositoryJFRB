@@ -31,20 +31,80 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
         //USUARIO
+        //INSTANCIAR
+        UsuarioController usuarioController = new UsuarioController();
+        
+        //intacia del objeto
+        Usuario usuario;
+        
+        //INSERTAR
+        usuario = new Usuario(1, "123456789", "Natalia", "natisjcl02@gmail.com", Rol);
+        usuarioController.insertarUsuario(usuario);
+        
+        //Eliminar
+        usuarioController.eliminarUsuario(1);
+        
+        // Editar
+        usuario = new Usuario(1, "123456789", "Judy", "judy02@gmail.com", Rol);
+        usuarioController.actualizarUsuario(usuario);
+        
+        //leer usuario
+        usuarioController.listarUsuarios();
+        
+        //tipo partida 
+        //instancia
+        TipoPartidaController tipopartidacontroller = new TipoPartidaController();
+        
+        //instancia del objeto 
+        TipoPartida tipopartida;
+        
+        //insertar
+        tipopartida  = new TipoPartida(1, "INGRESO");
+        tipopartidacontroller.insertarTipoPartida(tipopartida);
+        
+        //eliminar
+        tipopartidacontroller.eliminarTipoPartida(1);
+        
+        tipopartida = new TipoPartida(1,"GASTO");
+        tipopartidacontroller.insertarTipoPartida(tipopartida);
+        
+        //Leer
+        tipopartidacontroller.listarTipoPartida();
+        
+        //rol
+        RolController rolcontroller = new RolController();
+        
+        //instanciar el objero 
+        Rol rol;
+        
+        //insertar
+        rol = new Rol(1, "Administrador");
+        rolcontroller.insertarRol(rol);
+        
+        //eliminar
+        rolcontroller.eliminarRol(1);
+        
+        //editar
+        rol = new Rol(1, "CONTADOR");
+        rolcontroller.insertarRol(rol);
+        
+        //leer
+        rolcontroller.listarRoles();
+        
         
         //ESTADO PRESUPUESTO 
 
         EstadoPresupuestoController estadoController = new EstadoPresupuestoController();
 
-        EstadoPresupuesto estadoPresupuesto;
+        EstadoPresupuesto estado;
 
-        estadoPresupuesto = new EstadoPresupuesto(0, "Pendiente");
-        estadoController.insertarEstado(estadoPresupuesto);
+        estado = new EstadoPresupuesto(1, "Pendiente");
+        estadoController.insertarEstado(estado);
  
         estadoController.eliminarEstado(1);
 
-        estadoPresupuesto = new EstadoPresupuesto(2, "Aprobado");
-        estadoController.actualizarEstado("", "Aprobado");
+        estado = new EstadoPresupuesto(1, "aprobado");
+        estadoController.actualizarEstado(estado);
              
         estadoController.listarEstados();
 
@@ -60,7 +120,7 @@ public class Main {
         estadoAprobacionController.eliminarEstado(1);
 
         estadoAprobacion = new EstadoAprobacion(3, "Rechazado");
-        estadoAprobacionController.actualizarEstado(3, "Rechazado");
+        estadoAprobacionController.actualizarEstado(estadoAprobacion);
     
         estadoAprobacionController.listarEstados();
 
@@ -76,7 +136,7 @@ public class Main {
         ejecucionController.eliminarEjecucion(2);
 
         ejecucion = new EjecucionPresupuestaria(3, null, 18000.00, new SimpleDateFormat("yyyy-MM-dd").parse("2025-06-15"));
-        ejecucionController.actualizarEjecucion(3, 18000.00, new SimpleDateFormat("yyyy-MM-dd").parse("2025-06-15"));
+        ejecucionController.actualizarEjecucion(ejecucion);
    
         ejecucionController.listarEjecuciones();
 
@@ -92,7 +152,7 @@ public class Main {
         categoriaController.eliminarCategoria(2);
 
         categoria = new CategoriaPresupuesto(4, "Inversión");
-        categoriaController.actualizarCategoria(4, "Inversión");
+        categoriaController.actualizarCategoria(categoria);
     
         categoriaController.listarCategorias();
 
@@ -106,10 +166,10 @@ public class Main {
         aprobacion = new Aprobacion(0, null, null, null, "Aprobación inicial", new Date());
         aprobacionController.insertarAprobacion(aprobacion);
 
-        aprobacionController.eliminarAprobacion(1);
+        aprobacionController.eliminarCategoria(1);
 
         aprobacion = new Aprobacion(3, null, null, new EstadoAprobacion(1, "Aprobado"), "Revisión final", new SimpleDateFormat("yyyy-MM-dd").parse("2025-07-20"));
-        aprobacionController.actualizarAprobacion(3, new EstadoAprobacion(1, "Aprobado"), "Revisión final", "2025-07-20");
+        aprobacionController.actualizarAprobacion(aprobacion);
    
         aprobacionController.listarAprobacion();
 

@@ -9,7 +9,7 @@ public class Rol {
         this.descRol = descRol; // Administrador, Contador, Cliente
     }
 
-    public int getId() {
+    public int getRolId() {
         return id;
     }
 

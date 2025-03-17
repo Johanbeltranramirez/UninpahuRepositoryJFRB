@@ -1,49 +1,92 @@
 package Services;
 
 import Models.Usuario;
-import java.util.ArrayList;
-import java.util.List;
+import DB.DataBaseSQL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
 
 public class UsuarioService {
-    private List<Usuario> usuarios;
-
-    public UsuarioService() {
-        this.usuarios = new ArrayList<>();
-    }
-
-    public boolean agregarUsuario(Usuario usuario) {
-        if (usuario == null) {
-            return false;
+    public void AgregarUsuario(Usuario usuario){
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "INSERT INTO usuario (id, nDocId, nombre, email, rol) VALUES (?, ?, ?, ?)";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, usuario.getId());
+            stmt.setString(2, usuario.getNDocId());
+            stmt.setString(3, usuario.getNombre());
+            stmt.setString(4, usuario.getEmail());
+            stmt.setInt(5, usuario.rol.getRolId());
+            stmt.executeUpdate();
+            System.out.println("Elusuario se registró correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al registrar el usuario " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
         }
-        return usuarios.add(usuario);
+    }
+    
+    public void EliminarUsuario(int id){
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "DELETE FROM usuario WHERE id = ?";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("El usuario se eliminó correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al eliminar usuario " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
+        }
+    }
+    
+    public void EditarUsuario(Usuario usuario){
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "UPDATE usuario SET nDocId = ?, nombre = ?, email = ?, rol = ? WHERE id = ?";
+        
+        try(PreparedStatement stmt = conexion.prepareStatement(sql)) {
+           stmt.setInt(1, usuario.getId());
+           stmt.setString(2, usuario.getNDocId());
+           stmt.setString(3, usuario.getNombre());
+           stmt.setString(4, usuario.getEmail());
+           stmt.setInt(5, usuario.rol.getRolId());
+            stmt.executeUpdate();
+            System.out.println("El usuario se editó correctamente");
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al editar Usuario " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
+        }
     }
 
-    public boolean actualizarUsuario(int id, String nDocId, String nombre, String email) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getId() == id) {
-                usuario.setNDocId(nDocId);
-                usuario.setNombre(nombre);
-                usuario.setEmail(email);
-                return true;
+    public void MostrarUsuarios(){
+        Connection conexion = DataBaseSQL.Conectar();
+        String sql = "SELECT * FROM usuario";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String nDocId = rs.getString(2);
+                String nombre = rs.getString(3);
+                String email = rs.getString(4);
+                int rol = rs.getInt(5);
+                
+                System.out.println("ID: " + id);
+                System.out.println("NdocId" + nDocId);
+                System.out.println("Nombre" + nombre);
+                System.out.println("email" + email);
+                System.out.println("rol" + rol);
+                System.out.println("-------------------");
             }
+            
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al consultar los usuarios " + e.getMessage());
+        } finally {
+            DataBaseSQL.Desconectar(conexion);
         }
-        return false;
-    }
-
-    public boolean eliminarUsuario(int id) {
-        return usuarios.removeIf(usuario -> usuario.getId() == id);
-    }
-
-    public Usuario obtenerUsuarioPorId(int id) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getId() == id) {
-                return usuario;
-            }
-        }
-        return null;
-    }
-
-    public List<Usuario> listarUsuarios() {
-        return new ArrayList<>(usuarios);
     }
 }

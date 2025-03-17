@@ -2,64 +2,37 @@ package Controllers;
 
 import Models.TipoPartida;
 import Services.TipoPartidaService;
-import java.util.List;
+import java.util.Date;
 
 public class TipoPartidaController {
-    private TipoPartidaService tipoService;
-
-    public TipoPartidaController(TipoPartidaService tipoService) {
-        this.tipoService = tipoService;
+    public TipoPartidaService tipoService;
+    
+    public TipoPartidaController() {
+        this.tipoService = new TipoPartidaService();
     }
-
-    public void insertarTipoPartida(TipoPartida tipo) {
-        if (tipo == null) {
+    
+    public void insertarTipoPartida(TipoPartida tipopartida) {
+        if(tipopartida == null){
             System.err.println("Error: El tipo de partida no puede ser nulo.");
             return;
         }
-
-        boolean respuesta = tipoService.agregarTipoPartida(tipo);
-        if (respuesta) {
-            System.out.println("Tipo de partida registrado con éxito.");
-        } else {
-            System.err.println("Error al registrar el tipo de partida. Contacte al administrador.");
-        }
+        
+        tipoService.agregarTipoPartida(tipopartida);
+         System.out.println("tipo partida registrado con éxito.");
     }
+    
 
-    public void actualizarTipoPartida(int id, String descTipo) {
-        boolean respuesta = tipoService.actualizarTipoPartida(id, descTipo);
-        if (respuesta) {
-            System.out.println("Tipo de partida actualizado con éxito.");
-        } else {
-            System.err.println("Error al actualizar el tipo de partida. Contacte al administrador.");
-        }
-    }
-
-    public void eliminarTipoPartida(int id) {
-        boolean respuesta = tipoService.eliminarTipoPartida(id);
-        if (respuesta) {
-            System.out.println("Tipo de partida eliminado correctamente.");
-        } else {
-            System.err.println("Error al eliminar el tipo de partida. Contacte al administrador.");
-        }
-    }
-
-    public void obtenerTipoPartida(int id) {
-        TipoPartida tipo = tipoService.obtenerTipoPartidaPorId(id);
-        if (tipo != null) {
-            System.out.println("Tipo de partida encontrado: " + tipo.getDescTipo());
-        } else {
-            System.err.println("No se encontró el tipo de partida con ID: " + id);
-        }
-    }
-
-    public void listarTiposPartida() {
-        List<TipoPartida> tipos = tipoService.listarTiposPartida();
-        if (tipos.isEmpty()) {
-            System.out.println("No hay tipos de partida registrados.");
-        } else {
-            for (TipoPartida tipo : tipos) {
-                System.out.println("ID: " + tipo.getId() + ", Tipo: " + tipo.getDescTipo());
-            }
-        }
-    }
+   public void actualizarTipoPartida(TipoPartida tipopartida) {
+       tipoService.EditarTipoPartida(tipopartida);
+       System.out.println("tipo partida actualizada con éxito");
+   }
+   
+   public void eliminarTipoPartida(int id) {
+       tipoService.EliminarTipoPartida(id);
+       System.out.println("tipo partida eliminada correctamente");
+   }
+   
+   public void listarTipoPartida(){
+       tipoService.MostrarTipoPartidas();
+   }
 }
