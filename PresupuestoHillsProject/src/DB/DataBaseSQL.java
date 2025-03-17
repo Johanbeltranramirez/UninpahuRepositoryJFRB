@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class DataBaseSQL {
     
     private static final String url = "jdbc:mysql://localhost/3306/presupuestodb";
-    private static final String  usuario = "root"; 
-    private static final String  clave = ""; 
+    private static final String usuario = "root"; 
+    private static final String clave = "JFRB131415hola"; 
     
     public static Connection Conectar () {
         Connection conexion = null;
