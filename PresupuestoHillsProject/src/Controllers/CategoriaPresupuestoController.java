@@ -1,5 +1,4 @@
 package Controllers;
-
 import Models.CategoriaPresupuesto;
 import Services.CategoriaPresupuestoService;
 import java.util.List;
@@ -17,49 +16,21 @@ public class CategoriaPresupuestoController {
             return;
         }
 
-        boolean respuesta = categoriaService.agregarCategoria(categoria);
-        if (respuesta) {
-            System.out.println("Categoría registrada con éxito.");
-        } else {
-            System.err.println("Error al registrar categoría. Contacte al administrador.");
-        }
+        categoriaService.AgregarCategoriaPresupuesto(categoria);
+        System.out.println("Categoría registrada con éxito.");
     }
 
-    public void actualizarCategoria(int id, String nombreCategoria) {
-        boolean respuesta = categoriaService.actualizarCategoria(id, nombreCategoria);
-        if (respuesta) {
-            System.out.println("Categoría actualizada con éxito.");
-        } else {
-            System.err.println("Error al actualizar categoría. Contacte al administrador.");
-        }
+    public void actualizarCategoria(CategoriaPresupuesto categoria) {
+        categoriaService.EditarCategoriaPresupuesto(categoria);
+        System.out.println("Categoría actualizada con éxito.");
     }
 
     public void eliminarCategoria(int id) {
-        boolean respuesta = categoriaService.eliminarCategoria(id);
-        if (respuesta) {
-            System.out.println("Categoría eliminada correctamente.");
-        } else {
-            System.err.println("Error al eliminar categoría. Contacte al administrador.");
-        }
-    }
-
-    public void obtenerCategoria(int id) {
-        CategoriaPresupuesto categoria = categoriaService.obtenerCategoriaPorId(id);
-        if (categoria != null) {
-            System.out.println("Categoría encontrada: " + categoria.getNombreCategoria());
-        } else {
-            System.err.println("No se encontró la categoría con ID: " + id);
-        }
+        categoriaService.EliminarCategoriaPresupuesto(id);
+        System.out.println("Categoría eliminada correctamente.");
     }
 
     public void listarCategorias() {
-        List<CategoriaPresupuesto> categorias = categoriaService.listarCategorias();
-        if (categorias.isEmpty()) {
-            System.out.println("No hay categorías registradas.");
-        } else {
-            for (CategoriaPresupuesto categoria : categorias) {
-                System.out.println("ID: " + categoria.getId() + ", Nombre: " + categoria.getNombreCategoria());
-            }
-        }
+        categoriaService.MostrarCategoriasPresupuesto();
     }
 }

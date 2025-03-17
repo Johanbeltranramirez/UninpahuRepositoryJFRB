@@ -1,5 +1,4 @@
 package Controllers;
-
 import Models.EstadoAprobacion;
 import Services.EstadoAprobacionService;
 import java.util.List;
@@ -17,49 +16,21 @@ public class EstadoAprobacionController {
             return;
         }
 
-        boolean respuesta = estadoService.agregarEstado(estado);
-        if (respuesta) {
-            System.out.println("Estado de aprobación registrado con éxito.");
-        } else {
-            System.err.println("Error al registrar el estado. Contacte al administrador.");
-        }
+        estadoService.AgregarEstadoAprobacion(estado);
+        System.out.println("Estado de aprobación registrado con éxito.");
     }
 
-    public void actualizarEstado(int id, String nuevaDescripcion) {
-        boolean respuesta = estadoService.actualizarEstado(id, nuevaDescripcion);
-        if (respuesta) {
-            System.out.println("Estado de aprobación actualizado con éxito.");
-        } else {
-            System.err.println("Error al actualizar el estado. Contacte al administrador.");
-        }
+    public void actualizarEstado(EstadoAprobacion estado) {
+        estadoService.EditarEstadoAprobacion(estado);
+        System.out.println("Estado de aprobación actualizado con éxito.");
     }
 
     public void eliminarEstado(int id) {
-        boolean respuesta = estadoService.eliminarEstado(id);
-        if (respuesta) {
-            System.out.println("Estado de aprobación eliminado correctamente.");
-        } else {
-            System.err.println("Error al eliminar el estado. Contacte al administrador.");
-        }
-    }
-
-    public void obtenerEstado(int id) {
-        EstadoAprobacion estado = estadoService.obtenerEstadoPorId(id);
-        if (estado != null) {
-            System.out.println("Estado encontrado: " + estado.getDescEstado());
-        } else {
-            System.err.println("No se encontró el estado con ID: " + id);
-        }
+        estadoService.EliminarEstadoAprobacion(id);
+        System.out.println("Estado de aprobación eliminado correctamente.");
     }
 
     public void listarEstados() {
-        List<EstadoAprobacion> estados = estadoService.listarEstados();
-        if (estados.isEmpty()) {
-            System.out.println("No hay estados de aprobación registrados.");
-        } else {
-            for (EstadoAprobacion estado : estados) {
-                System.out.println("ID: " + estado.getId() + ", Descripción: " + estado.getDescEstado());
-            }
-        }
+        estadoService.MostrarEstadosAprobacion();
     }
 }
