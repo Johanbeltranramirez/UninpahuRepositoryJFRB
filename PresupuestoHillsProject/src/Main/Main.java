@@ -30,6 +30,26 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) throws ParseException {
+         //rol
+        RolController rolcontroller = new RolController();
+        
+        //instanciar el objero 
+        Rol rol;
+        
+        //insertar
+        rol = new Rol(1, "Administrador");
+        rolcontroller.insertarRol(rol);
+        
+        //eliminar
+        rolcontroller.eliminarRol(1);
+        
+        //editar
+        rol = new Rol(1, "CONTADOR");
+        rolcontroller.insertarRol(rol);
+        
+        //leer
+        rolcontroller.listarRoles();
+        
         //USUARIO
         //INSTANCIAR
         UsuarioController usuarioController = new UsuarioController();
@@ -38,14 +58,14 @@ public class Main {
         Usuario usuario;
         
         //INSERTAR
-        usuario = new Usuario(1, "123456789", "Natalia", "natisjcl02@gmail.com", Rol);
+        usuario = new Usuario(1, "123456789", "Natalia", "natisjcl02@gmail.com", rol);
         usuarioController.insertarUsuario(usuario);
         
         //Eliminar
         usuarioController.eliminarUsuario(1);
         
         // Editar
-        usuario = new Usuario(1, "123456789", "Judy", "judy02@gmail.com", Rol);
+        usuario = new Usuario(1, "123456789", "Judy", "judy02@gmail.com", rol);
         usuarioController.actualizarUsuario(usuario);
         
         //leer usuario
@@ -70,27 +90,7 @@ public class Main {
         
         //Leer
         tipopartidacontroller.listarTipoPartida();
-        
-        //rol
-        RolController rolcontroller = new RolController();
-        
-        //instanciar el objero 
-        Rol rol;
-        
-        //insertar
-        rol = new Rol(1, "Administrador");
-        rolcontroller.insertarRol(rol);
-        
-        //eliminar
-        rolcontroller.eliminarRol(1);
-        
-        //editar
-        rol = new Rol(1, "CONTADOR");
-        rolcontroller.insertarRol(rol);
-        
-        //leer
-        rolcontroller.listarRoles();
-        
+       
         
         //ESTADO PRESUPUESTO 
 

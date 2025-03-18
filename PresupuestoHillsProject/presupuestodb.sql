@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 13-03-2025 a las 01:21:40
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-03-2025 a las 02:41:41
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `aprobacion` (
-  `id` int(11) NOT NULL,
+  `id` int(20) NOT NULL,
   `presupuesto_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `estado_id` int(11) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `aprobacion` (
 --
 
 CREATE TABLE `categoriapresupuesto` (
-  `id` int(11) NOT NULL,
+  `id` int(3) NOT NULL,
   `nombreCategoria` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -54,7 +54,7 @@ CREATE TABLE `categoriapresupuesto` (
 --
 
 CREATE TABLE `ejecucionpresupuestaria` (
-  `id` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
   `partida_id` int(11) NOT NULL,
   `montoReal` decimal(15,2) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
@@ -67,7 +67,7 @@ CREATE TABLE `ejecucionpresupuestaria` (
 --
 
 CREATE TABLE `estadoaprobacion` (
-  `id` int(11) NOT NULL,
+  `id` int(1) NOT NULL,
   `descEstado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -78,7 +78,7 @@ CREATE TABLE `estadoaprobacion` (
 --
 
 CREATE TABLE `estadopresupuesto` (
-  `id` int(11) NOT NULL,
+  `id` int(1) NOT NULL,
   `descEstado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -89,7 +89,7 @@ CREATE TABLE `estadopresupuesto` (
 --
 
 CREATE TABLE `partidapresupuestaria` (
-  `id` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
   `categoria_id` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `monto` decimal(15,2) NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `partidapresupuestaria` (
 --
 
 CREATE TABLE `presupuestogeneral` (
-  `id` int(11) NOT NULL,
+  `id` int(15) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `montoTotal` decimal(15,2) NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE `presupuestogeneral` (
 --
 
 CREATE TABLE `rol` (
-  `id` int(11) NOT NULL,
+  `id` int(1) NOT NULL,
   `descRol` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -131,7 +131,7 @@ CREATE TABLE `rol` (
 --
 
 CREATE TABLE `tipopartida` (
-  `id` int(11) NOT NULL,
+  `id` int(1) NOT NULL,
   `descTipo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -142,7 +142,7 @@ CREATE TABLE `tipopartida` (
 --
 
 CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
+  `id` int(15) NOT NULL,
   `nDocId` varchar(50) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -228,70 +228,6 @@ ALTER TABLE `usuario`
   ADD UNIQUE KEY `nDocId` (`nDocId`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `rol_id` (`rol_id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `aprobacion`
---
-ALTER TABLE `aprobacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `categoriapresupuesto`
---
-ALTER TABLE `categoriapresupuesto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `ejecucionpresupuestaria`
---
-ALTER TABLE `ejecucionpresupuestaria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estadoaprobacion`
---
-ALTER TABLE `estadoaprobacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estadopresupuesto`
---
-ALTER TABLE `estadopresupuesto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `partidapresupuestaria`
---
-ALTER TABLE `partidapresupuestaria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `presupuestogeneral`
---
-ALTER TABLE `presupuestogeneral`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `rol`
---
-ALTER TABLE `rol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tipopartida`
---
-ALTER TABLE `tipopartida`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
