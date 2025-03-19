@@ -91,6 +91,7 @@ public class Main {
         //Leer
         tipopartidacontroller.listarTipoPartida();
        
+       
         
         //ESTADO PRESUPUESTO 
 
@@ -172,6 +173,45 @@ public class Main {
         aprobacionController.actualizarAprobacion(aprobacion);
    
         aprobacionController.listarAprobacion();
-
+        
+         //prsupuesto general
+        PresupuestoGeneralController  presupuestogeneralcontroller = new PresupuestoGeneralController();
+        
+        //intanciar el objeto 
+        PresupuestoGeneral presupuestogeneral;
+        
+        //insertar
+        presupuestogeneral = new PresupuestoGeneral(1, "Presupuesto mensual", "presupuesto de febrero", 1.2222222222, estado, categoria,new SimpleDateFormat("yyyy-MM-dd").parse("2025-07-20"));
+        presupuestogeneralcontroller.insertarPresupuesto(presupuestogeneral);
+        
+        //eliminar 
+        presupuestogeneralcontroller.eliminarPresupuesto(1);    
+        
+        //editar
+        presupuestogeneral = new  PresupuestoGeneral (1, "Presupuesto mensual", "presupuesto de febrero", 1.2222222222, estado, categoria,new SimpleDateFormat("yyyy-MM-dd").parse("2025-07-20"));
+        presupuestogeneralcontroller.actualizarPresupuesto(presupuestogeneral);
+        
+        //leer
+        presupuestogeneralcontroller.listarPresupuestos();
+        
+        //partidapresupuestaria
+        PartidaPresupuestariaController partidapresupuestariacontroller = new PartidaPresupuestariaController();
+        
+        // intanciar objeto
+        PartidaPresupuestaria partidapresupuestaria;
+        
+        //insertar
+        partidapresupuestaria = new PartidaPresupuestaria(1, categoria, "partida mensual", 1.333333, tipopartida, new SimpleDateFormat("yyyy-MM-dd").parse("2025-07-20"));
+        partidapresupuestariacontroller.insertarPartida(partidapresupuestaria);
+        
+        //eliminar
+        partidapresupuestariacontroller.eliminarPartida(1);
+        
+        //editar
+        partidapresupuestaria = new PartidaPresupuestaria(1, categoria, "partida mensual", 1.333333, tipopartida, new SimpleDateFormat("yyyy-MM-dd").parse("2025-07-20"));
+        partidapresupuestariacontroller.actualizarPartida(partidapresupuestaria);
+        
+        //leer
+        partidapresupuestariacontroller.listarPartidas();
     }
 }
