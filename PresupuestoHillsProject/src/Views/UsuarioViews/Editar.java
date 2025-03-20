@@ -47,6 +47,7 @@ public class Editar extends javax.swing.JFrame {
         jLabel2.setText("ID");
 
         jTextField1.setText("1");
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
