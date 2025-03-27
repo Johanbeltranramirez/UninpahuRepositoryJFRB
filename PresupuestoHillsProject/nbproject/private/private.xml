@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/PresupuestoViews/InicioJFrame.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Main/Main.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Models/Usuario.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/UsuarioViews/Eliminar.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/UsuarioViews/Usuario.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/LoginViews/Login.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/UsuarioViews/Editar.java</file>
             <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/UsuarioViews/Agregar.java</file>
         </group>
     </open-files>

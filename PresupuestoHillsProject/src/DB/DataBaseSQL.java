@@ -8,7 +8,7 @@ public class DataBaseSQL {
     
     private static final String url = "jdbc:mysql://localhost:3306/presupuestodb";
     private static final String usuario = "root"; 
-    private static final String clave = "JFRB131415hola"; 
+    private static final String clave = ""; 
     
     public static Connection Conectar () {
         Connection conexion = null;
