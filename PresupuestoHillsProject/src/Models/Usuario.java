@@ -6,6 +6,7 @@ public class Usuario {
     private String nDocId;
     private String nombre;
     private String email;
+    private String password;
     public Rol rol; // "Administrador", "Finanzas", "Contable"
 
     public Usuario(int id, String nDocId, String nombre, String email, Rol rol) {
@@ -13,6 +14,7 @@ public class Usuario {
         this.nDocId = nDocId;
         this.nombre = nombre;
         this.email = email;
+        this.password = password;
         this.rol = rol;
     }
 
@@ -28,6 +30,8 @@ public class Usuario {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-
+    
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }
 

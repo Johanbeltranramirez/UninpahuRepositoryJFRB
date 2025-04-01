@@ -8,11 +8,12 @@ CREATE TABLE Rol (
 
 CREATE TABLE Usuario (
     id INT(15) PRIMARY KEY,
-    nDocId VARCHAR(50) UNIQUE NOT NULL,
+    nDocId VARCHAR(50) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    rol_id INT NOT NULL,
-    FOREIGN KEY (rol_id) REFERENCES Rol(id)
+    password VARCHAR(25) NOT NULL,
+    rol INT NOT NULL,
+    FOREIGN KEY (rol) REFERENCES Rol(id)
 );
 
 CREATE TABLE TipoPartida (

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-03-2025 a las 02:41:41
+-- Tiempo de generación: 01-04-2025 a las 04:17:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -146,7 +146,8 @@ CREATE TABLE `usuario` (
   `nDocId` varchar(50) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `rol_id` int(11) NOT NULL
+  `password` varchar(25) NOT NULL,
+  `rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -225,9 +226,8 @@ ALTER TABLE `tipopartida`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nDocId` (`nDocId`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `rol_id` (`rol_id`);
+  ADD KEY `rol` (`rol`);
 
 --
 -- Restricciones para tablas volcadas
@@ -265,7 +265,7 @@ ALTER TABLE `presupuestogeneral`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`);
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `rol` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
