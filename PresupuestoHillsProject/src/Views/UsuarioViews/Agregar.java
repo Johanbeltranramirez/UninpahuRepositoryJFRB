@@ -179,20 +179,36 @@ public class Agregar extends javax.swing.JFrame {
     private void CrearUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUActionPerformed
         // TODO add your handling code here:
         
-        Usuario usuario = new Usuario();
-        
-        try{
+
             int id = Integer.parseInt(textId.getText());
             String nDocId = textnDocId.getText();
             String nombre = textNombre.getText();
             String email =  textEmail.getText();
-        }
+            
+            usuario = new Usuario (id, nDocId, nombre, email);
+            usuariocontroller.InsertarUsuario(usuario);
+        
         
     }//GEN-LAST:event_CrearUActionPerformed
 
     private void rolListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rolListActionPerformed
         // TODO add your handling code here:
-        
+        DefaultComboBoxModel combo=new Default
+                ´ComboBoxModel();
+        usuario.setModel(combo);
+        ListarRol lc=new ListarRol();
+         try {
+             Statement st = usuario.createStatement();
+             ResultSet rs = st.executeQuery("SELECT descRol FROM Rol");
+             while (rs.next()) {
+                 Uusario usuario = new Usuario();
+                 usuario.descRol(rs.getString(1));
+                 lc.AgregarRol(usuario);
+                 combo.addElement(usuario.getdescRol());
+                 System.out.println(usuario);
+                 
+             }
+         }
     }//GEN-LAST:event_rolListActionPerformed
 
     private void textnDocIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textnDocIdActionPerformed
