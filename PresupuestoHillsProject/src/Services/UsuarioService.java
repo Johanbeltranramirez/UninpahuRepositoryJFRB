@@ -30,7 +30,7 @@ public class UsuarioService {
     
     public void EliminarUsuario(int id){
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "DELETE FROM usuario WHERE id = ?";
+        String sql = "DELETE FROM usuario WHERE id = '" + id + "'";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -43,7 +43,7 @@ public class UsuarioService {
         }
     }
     
-    public void EditarUsuario(Usuario usuario){
+    public void EditarUsuario(Usuario usuario, int id ){
         Connection conexion = DataBaseSQL.Conectar();
         String sql = "UPDATE usuario SET nDocId = ?, nombre = ?, email = ?, rol = ? WHERE id = ?";
         
@@ -61,32 +61,22 @@ public class UsuarioService {
             DataBaseSQL.Desconectar(conexion);
         }
     }
-
-    public void MostrarUsuarios(){
-        Connection conexion = DataBaseSQL.Conectar();
-        String sql = "SELECT * FROM usuario";
+    
+    public ResultSet ConsultarUsuario(String ConsultaSQL){
         
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String nDocId = rs.getString(2);
-                String nombre = rs.getString(3);
-                String email = rs.getString(4);
-                int rol = rs.getInt(5);
-                
-                System.out.println("ID: " + id);
-                System.out.println("NdocId" + nDocId);
-                System.out.println("Nombre" + nombre);
-                System.out.println("email" + email);
-                System.out.println("rol" + rol);
-                System.out.println("-------------------");
-            }
+        Connection conexion = DataBaseSQL.Conectar();
+        
+        ResultSet rs = null;
+        
+        try{
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
             
-        } catch (SQLException e) {
-            System.out.println("ERROR: Al consultar los usuarios " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
+            rs = stmt.executeQuery();
+        }catch(SQLException e){
+            System.out.print("ERROR: Al consultar Usuario" + e.getMessage());
         }
+                
+        return rs;
     }
+
 }

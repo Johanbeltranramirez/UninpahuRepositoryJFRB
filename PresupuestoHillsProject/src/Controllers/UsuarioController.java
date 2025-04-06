@@ -1,35 +1,35 @@
 package Controllers;
+
+import static DB.DataBaseSQL.Conectar;
 import Models.Usuario;
 import Services.UsuarioService;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class UsuarioController {
+    
     public UsuarioService usuarioService;
 
     public UsuarioController() {
         this.usuarioService = new UsuarioService();
     }
 
-    public void insertarUsuario(Usuario usuario) {
-        if (usuario == null) {
-            System.err.println("Error: El usuario no puede ser nulo.");
-            return;
-        }
-
+    public void InsertarUsuario(Usuario usuario) {        
         usuarioService.AgregarUsuario(usuario);
-        System.out.println("Usuario registrado con éxito.");
     }
-
-    public void actualizarUsuario(Usuario usuario) {
-        usuarioService.EditarUsuario(usuario);
-        System.out.println("Usuario actualizado con éxito.");
-    }
-
+    
     public void eliminarUsuario(int id) {
+        System.out.println("ID: " + id);
         usuarioService.EliminarUsuario(id);
-        System.out.println("Usuario eliminado correctamente.");
+    }
+        
+    public void ActualizarUsuario(Usuario usuario, int id) {
+        usuarioService.EditarUsuario(usuario, id);
+    }
+    
+    public ResultSet ConsultarUsuario(String ConsultarSQL){
+        return usuarioService.ConsultarUsuario(ConsultarSQL);
     }
 
-    public void listarUsuarios() {
-        usuarioService.MostrarUsuarios();
-    }
+    
 }

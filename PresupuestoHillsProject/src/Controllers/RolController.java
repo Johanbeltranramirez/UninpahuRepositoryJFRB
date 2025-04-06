@@ -1,10 +1,13 @@
 package Controllers;
 
+import static DB.DataBaseSQL.Conectar;
 import Models.Rol;
 import Services.RolService;
-import java.util.Date;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class RolController {
+    
     public RolService rolService;
 
     public RolController() {
@@ -12,26 +15,19 @@ public class RolController {
     }
 
     public void insertarRol(Rol rol) {
-        if (rol == null) {
-            System.out.println("Error: El rol no puede ser nulo.");
-            return;
-        }
-        
         rolService.AgregarRol(rol);
-        System.out.println("Rol registrado con éxito");
     }
-
-    public void actualizarRol(Rol rol){
-        rolService.EditarRol(rol);
-        System.out.println("Rol actualizado con éxito.");
-    }
-
+    
     public void eliminarRol(int id) {
+        System.out.println("ID:" + id);
         rolService.EliminarRol(id);
-        System.out.println("Rol eliminado correctamente ");
     }
 
-    public void listarRoles() {
-        rolService.MostrarRoles();
+    public void actualizarRol(Rol rol, int id){
+        rolService.EditarRol(rol, id);
+    }
+
+    public ResultSet listarRoles(String ConsultaSQL) {
+        return rolService.listarRoles(ConsultaSQL);
     }
 }

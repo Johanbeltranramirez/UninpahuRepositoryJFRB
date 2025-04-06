@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 
 public class RolService {
     public void AgregarRol(Rol rol){
@@ -39,7 +38,7 @@ public class RolService {
         }
     }
     
-     public void EditarRol(Rol rol) {
+     public void EditarRol(Rol rol, int is) {
          Connection conexion = DataBaseSQL.Conectar();
         String sql = "UPDATE Rol SET getDescRol=? WHERE id = ?";
         
@@ -56,24 +55,20 @@ public class RolService {
             
      }
 
-    public void MostrarRoles(){
+    public ResultSet listarRoles(String ConsultaSQL){
+        
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "SELECT * FROM Rol";
-
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String descTipo = rs.getString(2);
-                
-                System.out.println("ID: " + id);
-                System.out.println("descTipo: " + descTipo);
-                System.out.println("-------------------");
-            }
-          } catch (SQLException e) {
-            System.out.println("ERROR: Al consultar tipo partida " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
+        
+        ResultSet rs = null;
+        
+        try{
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+            
+            rs = stmt.executeQuery();
+        }catch(SQLException e){
+            System.out.print("ERROR: Al consultar Roles:" + e.getMessage());
         }
+                
+        return rs;
     }
 }
