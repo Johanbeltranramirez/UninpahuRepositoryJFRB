@@ -9,21 +9,21 @@ import java.sql.ResultSet;
 
 public class RolService {
     public void AgregarRol(Rol rol){
-        Connection conexion = DataBaseSQL.Conectar();
-        
-        String sql="INSETR INTO Rol (id, descRol) VALUES (?,?)";
-        
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            
-            stmt.setInt(1, rol.getRolId());
-            stmt.setString(2, rol.getDescRol());
-            System.out.println("El Rol se registró correctamente");
-        } catch (SQLException e) {
-            System.out.println("ERROR: Al registrar el rol " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
-        }
+    Connection conexion = DataBaseSQL.Conectar();
+    String sql = "INSERT INTO Rol (id, descRol) VALUES (?, ?)";
+    
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setInt(1, rol.getRolId());
+        stmt.setString(2, rol.getDescRol());
+        stmt.executeUpdate(); // FALTA CRUCIAL
+        System.out.println("El Rol se registró correctamente");
+    } catch (SQLException e) {
+        System.out.println("ERROR: Al registrar el rol " + e.getMessage());
+    } finally {
+        DataBaseSQL.Desconectar(conexion);
     }
+}
+
     
     public void EliminarRol(int id) {
         Connection conexion = DataBaseSQL.Conectar();
