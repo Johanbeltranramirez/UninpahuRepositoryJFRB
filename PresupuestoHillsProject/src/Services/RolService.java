@@ -10,9 +10,11 @@ import java.sql.ResultSet;
 public class RolService {
     public void AgregarRol(Rol rol){
         Connection conexion = DataBaseSQL.Conectar();
+        
         String sql="INSETR INTO Rol (id, descRol) VALUES (?,?)";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            
             stmt.setInt(1, rol.getRolId());
             stmt.setString(2, rol.getDescRol());
             System.out.println("El Rol se registró correctamente");
