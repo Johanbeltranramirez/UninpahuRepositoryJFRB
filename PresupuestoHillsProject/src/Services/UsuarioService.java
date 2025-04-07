@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 public class UsuarioService {
     public void AgregarUsuario(Usuario usuario){
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "INSERT INTO usuario (id, nDocId, nombre, email, password, rol) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario (id, nDocId, nombre, email, password, rol) VALUES (?, ?, ?, ?, ?, ?)";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, usuario.getId());

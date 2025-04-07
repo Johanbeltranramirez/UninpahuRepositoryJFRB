@@ -4,6 +4,7 @@ package Controllers;
 import Models.Rol;
 import Services.RolService;
 import java.sql.*;
+import java.util.List;
 
 public class RolController {
     
@@ -29,7 +30,7 @@ public class RolController {
         return rolService.listarRoles(ConsultaSQL);
     }
 
-    public void AgregarRol(Rol rol) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   public List<Rol> ListarRol(){
+        return rolService.ListarRol();
     }
 }

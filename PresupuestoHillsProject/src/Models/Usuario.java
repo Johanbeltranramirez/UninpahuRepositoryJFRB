@@ -9,7 +9,7 @@ public class Usuario {
     private String password;
     public Rol rol; // "Administrador", "Finanzas", "Contable"
 
-    public Usuario(int id, String nDocId, String nombre, String email, Rol rol) {
+    public Usuario(int id, String nDocId, String nombre, String email, String password,  Rol rol) {
         this.id = id;
         this.nDocId = nDocId;
         this.nombre = nombre;

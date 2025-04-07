@@ -5,10 +5,15 @@
 package Views.UsuarioViews;
 
 import Controllers.UsuarioController;
+import Controllers.RolController;
+import Models.Rol;
 import Models.Usuario;
 import static java.lang.Integer.parseInt;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -18,32 +23,33 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class Agregar extends javax.swing.JFrame {
 
-    UsuarioController usuariocontroller = new UsuarioController();
+    UsuarioController usuarioController = new UsuarioController();
+    
+    RolController rolController = new RolController();
     
     Usuario usuario;
+    
+   Rol rol;
+   
+    private Map<String, Rol> mapaRol = new HashMap<>();
     /**
      * Creates new form Agregar
      */
     public Agregar() {
         initComponents();
+        CargarRoles();
         
-        DefaultComboBoxModel combo=new Default
-                ´ComboBoxModel();
-        usuario.setModel(combo);
-        ListarRol lc=new ListarRol();
-         try {
-             Statement st = usuario.createStatement();
-             ResultSet rs = st.executeQuery("SELECT descRol FROM Rol");
-             while (rs.next()) {
-                 Uusario usuario = new Usuario();
-                 usuario.descRol(rs.getString(1));
-                 lc.AgregarRol(usuario);
-                 combo.addElement(usuario.getdescRol());
-                 System.out.println(usuario);
-                 
-             }
-         }
+    }
+    
+    public void CargarRoles(){
         
+        List<Rol> roles = rolController.ListarRol();
+        
+        for (Rol rol : roles) {
+            String descRol = rol.getDescRol();
+            rolList.addItem(descRol); // agrega el nombre
+            mapaRol.put(descRol, rol); // guarda la categoría con ese nombre
+        }
     }
     
 
@@ -68,6 +74,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         textId = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        passwordtext = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -127,46 +135,61 @@ public class Agregar extends javax.swing.JFrame {
 
         textId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 2));
 
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 3, 18)); // NOI18N
+        jLabel7.setText("Contraseña");
+
+        passwordtext.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 2));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(318, 318, 318))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(textnDocId, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(rolList, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(CrearU)
-                                    .addGap(86, 86, 86))
-                                .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(99, 99, 99)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(382, 382, 382))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(107, 107, 107))))
+                        .addGap(214, 214, 214)
+                        .addComponent(CrearU)
+                        .addGap(185, 185, 185))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(219, 219, 219))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textnDocId, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rolList, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel1))
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -180,11 +203,15 @@ public class Agregar extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(2, 2, 2)
                 .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rolList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(43, 43, 43)
                 .addComponent(CrearU)
                 .addGap(32, 32, 32))
         );
@@ -198,37 +225,23 @@ public class Agregar extends javax.swing.JFrame {
 
     private void CrearUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(textId.getText());
+        String ndocId = textnDocId.getText();
+        String nombre = textNombre.getText();
+        String email = textEmail.getText();
+        String password = passwordtext.getText();
         
 
-            int id = Integer.parseInt(textId.getText());
-            String nDocId = textnDocId.getText();
-            String nombre = textNombre.getText();
-            String email =  textEmail.getText();
-            
-            usuario = new Usuario (id, nDocId, nombre, email);
-            usuariocontroller.InsertarUsuario(usuario);
-        
+        String descRolRol = (String) rolList.getSelectedItem();
+        Rol RolSeleccionado = mapaRol.get( descRolRol);
+
+        usuario = new Usuario(id, ndocId, nombre, email, password, RolSeleccionado);
+        usuarioController.InsertarUsuario(usuario);
         
     }//GEN-LAST:event_CrearUActionPerformed
 
     private void rolListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rolListActionPerformed
         // TODO add your handling code here:
-        DefaultComboBoxModel combo=new Default
-                ´ComboBoxModel();
-        usuario.setModel(combo);
-        ListarRol lc=new ListarRol();
-         try {
-             Statement st = usuario.createStatement();
-             ResultSet rs = st.executeQuery("SELECT descRol FROM Rol");
-             while (rs.next()) {
-                 Uusario usuario = new Usuario();
-                 usuario.descRol(rs.getString(1));
-                 lc.AgregarRol(usuario);
-                 combo.addElement(usuario.getdescRol());
-                 System.out.println(usuario);
-                 
-             }
-         }
     }//GEN-LAST:event_rolListActionPerformed
 
     private void textnDocIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textnDocIdActionPerformed
@@ -278,6 +291,8 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPasswordField passwordtext;
     private javax.swing.JComboBox<String> rolList;
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textId;
