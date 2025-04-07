@@ -43,13 +43,13 @@ public class TipoPartidaService {
         }
    }
    
-   public void EditarTipoPartida(TipoPartida tipopartida){
+   public void EditarTipoPartida(TipoPartida tipopartida, int id){
        Connection conexion = DataBaseSQL.Conectar();
-       String sql = "UPDATE tipoapartida SET desTipo = ? WHERE id = ?";
+       String sql = "UPDATE tipopartida SET descTipo = ? WHERE id = ?";
        
        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
           stmt.setString(1, tipopartida.getDescTipo()); 
-          stmt.setInt(2, tipopartida.getTipoId());
+          stmt.setInt(2, id);
           stmt.executeUpdate();
             System.out.println("El tipo partida se editó correctamente");
         } catch (SQLException e) {
@@ -59,24 +59,19 @@ public class TipoPartidaService {
        }
     }
    
-    public void MostrarTipoPartidas() {
+    public ResultSet listarTipoPartida(String ConsultaSQL) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "SELECT * FROM tipopartida";
+        ResultSet rs = null;
         
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String descTipo = rs.getString(2);
-                
-                System.out.println("ID: " + id);
-                System.out.println("descTipo: " + descTipo);
-            }
-          } catch (SQLException e) {
-            System.out.println("ERROR: Al consultar tipo partida " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
+        try {
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.print("ERROR: Al consultar Tipo partida: " + e.getMessage());
         }
+
+        return rs;
+        
     }
 }
     

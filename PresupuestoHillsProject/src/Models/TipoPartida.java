@@ -4,6 +4,9 @@ public class TipoPartida {
     private int id;
     private String descTipo; //Si es ingreso o gasto
 
+    public TipoPartida(){
+        
+    }
     public TipoPartida(int id, String descTipo) {
         this.id = id;
         this.descTipo = descTipo;

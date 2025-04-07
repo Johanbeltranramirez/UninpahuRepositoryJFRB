@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Controllers/RolController.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/RolService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/UsuarioViews/Agregar.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Models/Usuario.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Models/Rol.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Controllers/TipoPartidaController.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/TipoPartidaService.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/TipoPartidaViews/TipoPartida.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Models/TipoPartida.java</file>
         </group>
     </open-files>
 </project-private>

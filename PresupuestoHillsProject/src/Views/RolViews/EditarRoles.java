@@ -121,21 +121,21 @@ public class EditarRoles extends javax.swing.JFrame {
         
         String idStr = textIdRol.getText().trim();
 
-if (idStr.equals("")) {
-    JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
-    return;
-}
+    if (idStr.equals("")) {
+        JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-int id = Integer.parseInt(idStr);
-String descRol = textDescRol.getText().trim();
+    int id = Integer.parseInt(idStr);
+    String descRol = textDescRol.getText().trim();
 
-Rol actualizarRol = new Rol();
-actualizarRol.setDescRol(descRol);
+    Rol actualizarRol = new Rol();
+    actualizarRol.setDescRol(descRol);
 
-RolController rolController = new RolController();
-rolController.actualizarRol(actualizarRol, id); // usar el método correcto
+    RolController rolController = new RolController();
+    rolController.actualizarRol(actualizarRol, id); // usar el método correcto
 
-JOptionPane.showMessageDialog(null, "Se editó correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, "Se editó correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_editarRolActionPerformed
 
