@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author Judy Natalia
@@ -25,7 +26,26 @@ public class Agregar extends javax.swing.JFrame {
      */
     public Agregar() {
         initComponents();
+        
+        DefaultComboBoxModel combo=new Default
+                ´ComboBoxModel();
+        usuario.setModel(combo);
+        ListarRol lc=new ListarRol();
+         try {
+             Statement st = usuario.createStatement();
+             ResultSet rs = st.executeQuery("SELECT descRol FROM Rol");
+             while (rs.next()) {
+                 Uusario usuario = new Usuario();
+                 usuario.descRol(rs.getString(1));
+                 lc.AgregarRol(usuario);
+                 combo.addElement(usuario.getdescRol());
+                 System.out.println(usuario);
+                 
+             }
+         }
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
