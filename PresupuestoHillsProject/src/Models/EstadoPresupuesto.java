@@ -3,6 +3,10 @@ package Models;
 public class EstadoPresupuesto {
     private int id;
     private String descEstado; // "Borrador", "Aprobado", "Rechazado"
+    
+    public EstadoPresupuesto(){
+        
+    }
 
     public EstadoPresupuesto(int id, String descEstado) {
         this.id = id;

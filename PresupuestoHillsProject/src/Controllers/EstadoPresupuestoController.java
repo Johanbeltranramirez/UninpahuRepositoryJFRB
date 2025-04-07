@@ -1,8 +1,11 @@
 package Controllers;
+
 import Models.EstadoPresupuesto;
 import Services.EstadoPresupuestoService;
+import java.sql.*;
 
 public class EstadoPresupuestoController {
+    
     public EstadoPresupuestoService estadoService;
 
     public EstadoPresupuestoController() {
@@ -10,26 +13,19 @@ public class EstadoPresupuestoController {
     }
 
     public void insertarEstado(EstadoPresupuesto estado) {
-        if (estado == null) {
-            System.err.println("Error: El estado del presupuesto no puede ser nulo.");
-            return;
-        }
-
         estadoService.AgregarEstadoPresupuesto(estado);
-        System.out.println("Estado del presupuesto registrado con éxito.");
-    }
-
-    public void actualizarEstado(EstadoPresupuesto estado) {
-        estadoService.EditarEstadoPresupuesto(estado);
-        System.out.println("Estado del presupuesto actualizado con éxito.");
     }
 
     public void eliminarEstado(int id) {
         estadoService.EliminarEstadoPresupuesto(id);
-        System.out.println("Estado del presupuesto eliminado correctamente.");
+    }
+    
+    public void actualizarEstado(EstadoPresupuesto estado, int id) {
+        estadoService.EditarEstadoPresupuesto(estado, id);
+        
     }
 
-    public void listarEstados() {
-        estadoService.MostrarEstadosPresupuesto();
+    public ResultSet listarEstadoPresupuesto(String ConsultaSQL){
+        return estadoService.listarEstadoPresupuesto(ConsultaSQL);
     }
 }

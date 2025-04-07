@@ -7,9 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class EstadoPresupuestoService {
+    
     public void AgregarEstadoPresupuesto(EstadoPresupuesto estado) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "INSERT INTO estado_presupuesto(id, descEstado) VALUES (?, ?)";
+        String sql = "INSERT INTO estadopresupuesto(id, descEstado) VALUES (?, ?)";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, estado.getId());
@@ -25,7 +26,7 @@ public class EstadoPresupuestoService {
     
     public void EliminarEstadoPresupuesto(int id) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "DELETE FROM estado_presupuesto WHERE id = ?";
+        String sql = "DELETE FROM estadopresupuesto WHERE id = ?";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -38,13 +39,13 @@ public class EstadoPresupuestoService {
         }
     }
     
-    public void EditarEstadoPresupuesto(EstadoPresupuesto estado) {
+    public void EditarEstadoPresupuesto(EstadoPresupuesto estado, int id) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "UPDATE estado_presupuesto SET descEstado = ? WHERE id = ?";
+        String sql = "UPDATE estadopresupuesto SET descEstado = ? WHERE id = ?";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setString(1, estado.getDescEstado());
-            stmt.setInt(2, estado.getId());
+            stmt.setInt(2, id); 
             stmt.executeUpdate();
             System.out.println("El estado de presupuesto se editó correctamente");
         } catch (SQLException e) {
@@ -54,24 +55,17 @@ public class EstadoPresupuestoService {
         }
     }
     
-    public void MostrarEstadosPresupuesto() {
+    public ResultSet listarEstadoPresupuesto(String ConsultaSQL) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "SELECT * FROM estado_presupuesto";
+        ResultSet rs = null;
         
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String descEstado = rs.getString(2);
-                
-                System.out.println("ID: " + id);
-                System.out.println("Estado: " + descEstado);
-                System.out.println("-------------------");
-            }
+        try {
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+            rs = stmt.executeQuery();
         } catch (SQLException e) {
-            System.out.println("ERROR: Al consultar estados de presupuesto " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
+            System.out.print("ERROR: Al consultar Roles: " + e.getMessage());
         }
+
+        return rs;
     }
 }
