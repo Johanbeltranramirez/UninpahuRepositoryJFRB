@@ -3,6 +3,7 @@ package Models;
 import java.util.Date;
 
 public class Rol {
+    
     private int id;
     private String descRol;
     

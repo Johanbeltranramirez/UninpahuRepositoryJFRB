@@ -1,8 +1,15 @@
 package Models;
 
+import java.util.Date;
+
 public class EstadoAprobacion {
+    
     private int id;
     private String descEstado; // "Pendiente", "Aprobado", "Rechazado"
+    
+    public EstadoAprobacion() {
+    
+    }
 
     public EstadoAprobacion(int id, String descEstado) {
         this.id = id;

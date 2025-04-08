@@ -7,9 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class EstadoAprobacionService {
+    
     public void AgregarEstadoAprobacion(EstadoAprobacion estado) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "INSERT INTO estado_aprobacion(id, descEstado) VALUES (?, ?)";
+        String sql = "INSERT INTO estadoaprobacion(id, descEstado) VALUES (?, ?)";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, estado.getId());
@@ -25,7 +26,7 @@ public class EstadoAprobacionService {
     
     public void EliminarEstadoAprobacion(int id) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "DELETE FROM estado_aprobacion WHERE id = ?";
+        String sql = "DELETE FROM estadoaprobacion WHERE id = ?";
         
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -38,40 +39,34 @@ public class EstadoAprobacionService {
         }
     }
     
-    public void EditarEstadoAprobacion(EstadoAprobacion estado) {
-        Connection conexion = DataBaseSQL.Conectar();
-        String sql = "UPDATE estado_aprobacion SET descEstado = ? WHERE id = ?";
-        
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            stmt.setString(1, estado.getDescEstado());
-            stmt.setInt(2, estado.getId());
-            stmt.executeUpdate();
-            System.out.println("El estado de aprobación se editó correctamente");
-        } catch (SQLException e) {
-            System.out.println("ERROR: Al editar estado de aprobación " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
-        }
-    }
+    public void EditarEstadoAprobacion(EstadoAprobacion estado, int id) {
+    Connection conexion = DataBaseSQL.Conectar();
+    String sql = "UPDATE estadoaprobacion SET descEstado = ? WHERE id = ?";
     
-    public void MostrarEstadosAprobacion() {
+    try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        stmt.setString(1, estado.getDescEstado());
+        stmt.setInt(2, id); // CORREGIDO: usar el id recibido por parámetro
+        stmt.executeUpdate();
+        System.out.println("El estado de aprobación se editó correctamente");
+    } catch (SQLException e) {
+        System.out.println("ERROR: Al editar estado de aprobación " + e.getMessage());
+    } finally {
+        DataBaseSQL.Desconectar(conexion);
+    }
+}
+
+    
+    public ResultSet ListarEstadosAprobacion(String ConsultaSQL) {
         Connection conexion = DataBaseSQL.Conectar();
-        String sql = "SELECT * FROM estado_aprobacion";
+        ResultSet rs = null;
         
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String descEstado = rs.getString(2);
-                
-                System.out.println("ID: " + id);
-                System.out.println("Estado: " + descEstado);
-                System.out.println("-------------------");
-            }
+        try {
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+            rs = stmt.executeQuery();
         } catch (SQLException e) {
-            System.out.println("ERROR: Al consultar estados de aprobación " + e.getMessage());
-        } finally {
-            DataBaseSQL.Desconectar(conexion);
+            System.out.print("ERROR: Al consultar Roles: " + e.getMessage());
         }
+
+        return rs;
     }
 }
