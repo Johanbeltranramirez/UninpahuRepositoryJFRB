@@ -19,6 +19,7 @@ public class RolController {
     }
     
     public void eliminarRol(int id) {
+        System.out.println("ID: " + id);
         rolService.EliminarRol(id);
     }
 
@@ -30,7 +31,8 @@ public class RolController {
         return rolService.listarRoles(ConsultaSQL);
     }
 
+       
    public List<Rol> ListarRol(){
-        return rolService.ListarRol();
+        return rolService.listarRol();
     }
 }

@@ -1,19 +1,20 @@
 package Models;
 
-import java.util.Date;
-
 public class Rol {
-    
+
     private int id;
     private String descRol;
-    
-    public Rol(){
-        
+
+    public Rol() {
     }
 
     public Rol(int id, String descRol) {
         this.id = id;
-        this.descRol = descRol; // Administrador, Contador, Cliente
+        this.descRol = descRol;
+    }
+
+    public Rol(String descRol) {
+        this.descRol = descRol;
     }
 
     public int getRolId() {
@@ -31,5 +32,10 @@ public class Rol {
     public void setDescRol(String descRol) {
         this.descRol = descRol;
     }
-       
+
+    @Override
+    public String toString() {
+        return descRol;
+    }
 }
+

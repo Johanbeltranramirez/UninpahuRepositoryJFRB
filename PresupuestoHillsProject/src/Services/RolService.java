@@ -61,63 +61,72 @@ import javax.swing.JOptionPane;
         }
     }
 
-    // Recomendado: devolver lista de objetos, no ResultSet
+    
     public ResultSet listarRoles(String ConsultaSQL) {
         Connection conexion = DataBaseSQL.Conectar();
         ResultSet rs = null;
+        
+        if (conexion != null){
+            try {
+                PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+                rs = stmt.executeQuery();
+            } catch (SQLException e) {
+                System.out.print("ERROR: Al consultar Roles: " + e.getMessage());
+            }
 
-        try {
-            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
-            rs = stmt.executeQuery();
-        } catch (SQLException e) {
-            System.out.print("ERROR: Al consultar Roles: " + e.getMessage());
         }
-
-        return rs;
+      return rs;
+        
     }
     
    
-    public List<Rol> ListarRol() {
-        List<Rol> listaRol= new ArrayList<>();
-        String consultaSQL = "SELECT * FROM Rol";
+    public List<Rol> listarRol() {
+    List<Rol> listaRol = new ArrayList<>();
+    String consultaSQL = "SELECT * FROM Rol";
 
-        try ( Connection conexion = DataBaseSQL.Conectar();  PreparedStatement stmt = conexion.prepareStatement(consultaSQL);  ResultSet rs = stmt.executeQuery()) {
+    try (Connection conexion = DataBaseSQL.Conectar();
+         PreparedStatement stmt = conexion.prepareStatement(consultaSQL);
+         ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-                Rol rol = new Rol();
-                rol.setId(rs.getInt("id")); // asegúrate que "id" es el nombre correcto en tu BD
-                rol.setDescRol(rs.getString("descRol")); // igual aquí
-
-                listaRol.add(rol);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("ERROR al listar categorías: " + e.getMessage());
+        while (rs.next()) {
+            Rol rol = new Rol();
+            rol.setId(rs.getInt("id"));
+            rol.setDescRol(rs.getString("descRol"));
+            listaRol.add(rol);
         }
-        
 
-        return listaRol;
+    } catch (SQLException e) {
+        System.out.println("ERROR al listar roles: " + e.getMessage());
     }
+
+    return listaRol;
+}
+
     
 
     public Rol ConsultarRol(int id) {
-        String sql = "SELECT descRol FROM Rol WHERE id = '" + id + "'";
+    String sql = "SELECT descRol FROM Rol WHERE id = ?";
+    Rol RolEncontrado = new Rol();
 
-        Rol RolEncontrado = new Rol();
-        try {
-            Connection conexion = DataBaseSQL.Conectar();
-            PreparedStatement consulta = conexion.prepareStatement(sql);
-            ResultSet resultado = consulta.executeQuery();
-
+    try (Connection conexion = DataBaseSQL.Conectar();
+         PreparedStatement consulta = conexion.prepareStatement(sql)) {
+        
+        consulta.setInt(1, id);
+        try (ResultSet resultado = consulta.executeQuery()) {
             if (resultado.next()) {
                 RolEncontrado.setDescRol(resultado.getString("descRol"));
+                RolEncontrado.setId(id);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar la categoria", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Error de tipo: " + e);
-            System.out.println("Error en la clase: " + this.getClass().getName());
         }
-        return RolEncontrado;
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar el rol", JOptionPane.ERROR_MESSAGE);
+        System.out.println("Error de tipo: " + e);
+        System.out.println("Error en la clase: " + this.getClass().getName());
     }
+
+    return RolEncontrado;
+}
+
 
 }

@@ -42,7 +42,7 @@ public class Agregar extends javax.swing.JFrame {
     }
     
     public void CargarRoles(){
-        
+        RolController rolController = new RolController();
         List<Rol> roles = rolController.ListarRol();
         
         for (Rol rol : roles) {

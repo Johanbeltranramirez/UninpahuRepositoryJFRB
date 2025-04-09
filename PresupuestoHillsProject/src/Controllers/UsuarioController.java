@@ -19,7 +19,6 @@ public class UsuarioController {
     }
     
     public void eliminarUsuario(int id) {
-        System.out.println("ID: " + id);
         usuarioService.EliminarUsuario(id);
     }
         
@@ -30,6 +29,6 @@ public class UsuarioController {
     public ResultSet ConsultarUsuario(String ConsultarSQL){
         return usuarioService.ConsultarUsuario(ConsultarSQL);
     }
-
+    
     
 }

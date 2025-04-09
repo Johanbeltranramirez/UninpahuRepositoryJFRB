@@ -1,5 +1,6 @@
 package Models;
-import Models.Rol;
+
+import java.util.Date;
 
 public class Usuario {
     private int id;
@@ -8,6 +9,12 @@ public class Usuario {
     private String email;
     private String password;
     public Rol rol; // "Administrador", "Finanzas", "Contable"
+    
+    public Usuario(){
+        
+    }
+    
+    
 
     public Usuario(int id, String nDocId, String nombre, String email, String password,  Rol rol) {
         this.id = id;
@@ -17,6 +24,8 @@ public class Usuario {
         this.password = password;
         this.rol = rol;
     }
+
+   
 
     // Getters y Setters
     public int getId() { return id; }
@@ -33,5 +42,13 @@ public class Usuario {
     
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    
+    public Rol getRol(){
+        return rol;
+    }
+    
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }
 

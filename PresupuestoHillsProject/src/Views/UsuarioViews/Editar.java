@@ -10,10 +10,13 @@ import Models.Usuario;
 import Models.Rol;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
+
 /**
  *
  
@@ -28,7 +31,7 @@ public class Editar extends javax.swing.JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                CargarRoles();
+                cargarRoles();
             }
         });
     }
@@ -217,52 +220,55 @@ public class Editar extends javax.swing.JFrame {
 
     private void EditarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarUActionPerformed
         // TODO add your handling code here:
-        String id = textId.getText().trim();
-        
-        if (id.equals("")) {
-            JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        Usuario ActualizarUsuario = new Usuario();
-        UsuarioController EditarUsuario = new UsuarioController();
-        
-        Rol RolSeleccionado = (Rol) rolList.getSelectedItem();
-        
-        String ndocId = textnDocId.getText();
-        String nombre = textNombre.getText();
-        String email = textEmail.getText();
-        String password = passwordtext.getText();
-        
-        ActualizarUsuario.setNDocId(ndocId);
-        ActualizarUsuario.setNombre(nombre);
-        ActualizarUsuario.setEmail(email);
-        ActualizarUsuario.setPassword(password);
-        ActualizarUsuario.setRol(RolSeleccionado);
-        
-        int id = Integer.parseInt(id);
-        
-        EditarUsuario.ActualizarUsuario(ActualizarUsuario, id);
-        JOptionPane.showMessageDialog(null, "Se edito correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+        String idStr = textId.getText().trim();
+
+    if (idStr.equals("")) {
+        JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    int id = Integer.parseInt(idStr);
+
+    Usuario actualizarUsuario = new Usuario();
+    UsuarioController editarUsuario = new UsuarioController();
+
+    Rol rolSeleccionado = (Rol) rolList.getSelectedItem();
+
+    String ndocId = textnDocId.getText();
+    String nombre = textNombre.getText();
+    String email = textEmail.getText();
+    String password = passwordtext.getText();
+
+    actualizarUsuario.setNDocId(ndocId);    
+    actualizarUsuario.setNombre(nombre);
+    actualizarUsuario.setEmail(email);
+    actualizarUsuario.setPassword(password);
+    actualizarUsuario.setRol(rolSeleccionado);
+
+    editarUsuario.ActualizarUsuario(actualizarUsuario, id);
+    JOptionPane.showMessageDialog(null, "Se editó correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_EditarUActionPerformed
 
-    private void CargarRoles() {
-    textId.removeAllItems();  // ← Asegúrate de que textId sea un JComboBox, no un JTextField
+      
 
-    RolController rolController = new RolController();
-    ResultSet rs = rolController.listarRoles("SELECT * FROM Rol");
+    private void cargarRoles() {
+         rolList.removeAllItems();
 
-    try {
-        while (rs.next()) {
-            int id = rs.getInt("id");
-            String descRol = rs.getString("descRol");
-            Rol rol = new Rol(id, descRol);
-            textId.addItem(rol);  // ← Asegúrate que Rol tiene un buen `toString()` para mostrar bien
+        RolController rolController = new RolController();
+        ResultSet rs = rolController.listarRoles("SELECT * FROM rol");
+
+        try {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String descRol = rs.getString("descRol");
+                Rol rol = new Rol(id, descRol);
+                rolList.addItem(rol);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar las categorías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al cargar los roles: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
 
     /**
      * @param args the command line arguments

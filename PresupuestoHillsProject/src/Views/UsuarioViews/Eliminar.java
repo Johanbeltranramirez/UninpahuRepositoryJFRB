@@ -4,6 +4,9 @@
  */
 package Views.UsuarioViews;
 
+import Controllers.UsuarioController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Judy Natalia
@@ -28,8 +31,8 @@ public class Eliminar extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtIdUsuario = new javax.swing.JTextField();
+        Eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,16 +41,16 @@ public class Eliminar extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 2));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 3, 18)); // NOI18N
-        jLabel2.setText("Documento de identidad:");
+        jLabel2.setText("ID:");
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 2));
+        txtIdUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 255), 2));
 
-        jButton1.setBackground(new java.awt.Color(102, 153, 255));
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Eliminar Usuario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setBackground(new java.awt.Color(102, 153, 255));
+        Eliminar.setForeground(new java.awt.Color(51, 51, 51));
+        Eliminar.setText("Eliminar Usuario");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
 
@@ -59,19 +62,18 @@ public class Eliminar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(194, 194, 194)
-                        .addComponent(jButton1))
+                        .addComponent(Eliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(116, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,18 +83,28 @@ public class Eliminar extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(Eliminar)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String id = txtIdUsuario.getText();
+
+        if (id.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        UsuarioController usuarioController = new UsuarioController();
+        usuarioController.eliminarUsuario(Integer.parseInt(id));
+        JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,9 +142,9 @@ public class Eliminar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtIdUsuario;
     // End of variables declaration//GEN-END:variables
 }
