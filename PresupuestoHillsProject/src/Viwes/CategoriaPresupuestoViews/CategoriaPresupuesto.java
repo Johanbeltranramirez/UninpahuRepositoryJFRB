@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Views.EstadoPresupuestoViews;
+package Viwes.CategoriaPresupuestoViews;
 
-import Controllers.EstadoPresupuestoController;
+import Controllers.CategoriaPresupuestoController;
+import Views.RolViews.EditarRoles;
+import Views.RolViews.ElimirRol;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,48 +14,48 @@ import java.sql.SQLException;
  *
  * @author Judy Natalia
  */
-public class EstadoPresupuesto extends javax.swing.JFrame {
+public class CategoriaPresupuesto extends javax.swing.JFrame {
 
-    EstadoPresupuestoController estadopresupuestoController = new EstadoPresupuestoController();
+    CategoriaPresupuestoController categoriapresupuestoController = new  CategoriaPresupuestoController();
     /**
-     * Creates new form EstadoPresupuesto
+     * Creates new form CategoriaPresupuesto
      */
-    public EstadoPresupuesto() {
+    public CategoriaPresupuesto() {
         initComponents();
         InicializarTabla();
     }
-    
-    public void InicializarTabla(){
+
+    public void InicializarTabla() {
         
         Object[] titulos = new Object[2];
-          titulos[0] = "id";
-          titulos[1] = "descEstado";
-          
+        titulos[0] = "id";
+        titulos[1] = "nombreCategoria";
+        
         DefaultTableModel md = new DefaultTableModel();
         md.setColumnIdentifiers(titulos);
-
-        ResultSet rs = estadopresupuestoController.listarEstadoPresupuesto("SELECT * FROM estadopresupuesto");
-
-        try{
-             while (rs.next()) {
+        
+        ResultSet rs = categoriapresupuestoController.listarCategorias("SELECT * FROM categoriapresupuesto");
+        
+        try {
+            while (rs.next()){
                 int id = rs.getInt("id");
-                String descEstado = rs.getString("descEstado");
-            
+                String nombreCategoria = rs.getString("nombreCategoria");
+                
                 Object[] fila = new Object[2];
                 fila[0] = id;
-                fila[1] = descEstado;
+                fila[1] = nombreCategoria;
                 
                 md.addRow(fila);
-             }
+            }
         }catch (SQLException e) {
 
-            System.out.println("ERROR: Al consultar Rol " + e.getMessage());
+            System.out.println("ERROR: Al consultar Categoria Presupuesto " + e.getMessage());
 
         }
         
-        estadopresupuesto.setModel(md);
+        Categoria.setModel(md);
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,24 +67,38 @@ public class EstadoPresupuesto extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        estadopresupuesto = new javax.swing.JTable();
         Editar = new javax.swing.JButton();
-        Eliminar = new javax.swing.JButton();
+        Elimiar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Categoria = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 3, 36)); // NOI18N
-        jLabel1.setText("ESTADO PRESUPUESTO");
+        jLabel1.setText("CATEGORIA PRESUPUESTO");
 
-        Agregar.setText("Agregar +");
+        Agregar.setText("Agregar + ");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
             }
         });
 
-        estadopresupuesto.setModel(new javax.swing.table.DefaultTableModel(
+        Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+
+        Elimiar.setText("Eliminar");
+        Elimiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ElimiarActionPerformed(evt);
+            }
+        });
+
+        Categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -93,21 +109,7 @@ public class EstadoPresupuesto extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(estadopresupuesto);
-
-        Editar.setText("Editar");
-        Editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarActionPerformed(evt);
-            }
-        });
-
-        Eliminar.setText("Eliminar");
-        Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(Categoria);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,55 +118,55 @@ public class EstadoPresupuesto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
+                        .addGap(56, 56, 56)
                         .addComponent(Agregar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Editar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Eliminar))
+                        .addComponent(Elimiar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(Editar)
-                    .addComponent(Eliminar))
+                    .addComponent(Elimiar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code  here:
-        AgregarEstadoPresupuesto agregarVentana = new AgregarEstadoPresupuesto();
+        // TODO add your handling code here:
+        AgregarCategoriaPresupuesto agregarVentana = new AgregarCategoriaPresupuesto ();
         agregarVentana.setVisible(true);
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
-        EditarEstadoPresupuesto agregarVentana = new EditarEstadoPresupuesto();
-         agregarVentana.setVisible(true);
+        EditarCategoriaPresupuesto agregarVentana = new EditarCategoriaPresupuesto();
+    agregarVentana.setVisible(true);
     }//GEN-LAST:event_EditarActionPerformed
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+    private void ElimiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElimiarActionPerformed
         // TODO add your handling code here:
-        EliminarEstadoPresupuesto agregarVentana = new EliminarEstadoPresupuesto();
-        agregarVentana.setVisible(true);
-    }//GEN-LAST:event_EliminarActionPerformed
+        EliminarCategoriaPresupuesto agregarVentana = new EliminarCategoriaPresupuesto();
+      agregarVentana.setVisible(true);
+    }//GEN-LAST:event_ElimiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,29 +185,29 @@ public class EstadoPresupuesto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EstadoPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EstadoPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EstadoPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EstadoPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EstadoPresupuesto().setVisible(true);
+                new CategoriaPresupuesto().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
+    private javax.swing.JTable Categoria;
     private javax.swing.JButton Editar;
-    private javax.swing.JButton Eliminar;
-    private javax.swing.JTable estadopresupuesto;
+    private javax.swing.JButton Elimiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

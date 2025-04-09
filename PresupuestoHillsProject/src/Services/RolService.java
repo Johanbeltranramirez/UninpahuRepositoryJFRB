@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, rol.getRolId());
             stmt.setString(2, rol.getDescRol());
-            stmt.executeUpdate(); // FALTABA
+            stmt.executeUpdate(); 
             System.out.println("El Rol se registró correctamente");
         } catch (SQLException e) {
             System.out.println("ERROR: Al registrar el rol " + e.getMessage());

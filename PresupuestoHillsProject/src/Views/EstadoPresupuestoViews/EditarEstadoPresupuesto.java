@@ -45,8 +45,6 @@ public class EditarEstadoPresupuesto extends javax.swing.JFrame {
 
         jLabel3.setText("DESCRIPCION ESTADO");
 
-        textDescEstado.setText("jTextField2");
-
         esditarestado.setText("EDITAR");
         esditarestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

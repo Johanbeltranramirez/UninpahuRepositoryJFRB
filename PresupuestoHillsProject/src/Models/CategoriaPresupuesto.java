@@ -1,8 +1,15 @@
 package Models;
 
+import java.util.Date;
+
 public class CategoriaPresupuesto {
+    
     private int id;
     private String nombreCategoria;
+    
+    public CategoriaPresupuesto(){
+        
+    }
 
     public CategoriaPresupuesto(int id, String nombreCategoria) {
         this.id = id;

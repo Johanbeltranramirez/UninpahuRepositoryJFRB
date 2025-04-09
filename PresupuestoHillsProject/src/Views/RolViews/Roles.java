@@ -65,7 +65,7 @@ public class Roles extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Rol = new javax.swing.JTable();
         Editar = new javax.swing.JButton();
@@ -76,11 +76,11 @@ public class Roles extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 3, 36)); // NOI18N
         jLabel1.setText("ROL");
 
-        jButton1.setFont(new java.awt.Font("Tw Cen MT", 3, 18)); // NOI18N
-        jButton1.setText("Agregar + ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Agregar.setFont(new java.awt.Font("Tw Cen MT", 3, 18)); // NOI18N
+        Agregar.setText("Agregar + ");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AgregarActionPerformed(evt);
             }
         });
 
@@ -123,7 +123,7 @@ public class Roles extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(Agregar)
                         .addGap(18, 18, 18)
                         .addComponent(Editar)
                         .addGap(18, 18, 18)
@@ -138,7 +138,7 @@ public class Roles extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(Agregar)
                     .addComponent(Editar)
                     .addComponent(Eliminar))
                 .addGap(18, 18, 18)
@@ -149,9 +149,11 @@ public class Roles extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Insertar agregarVentana = new Insertar();
+        agregarVentana.setVisible(true);
+    }//GEN-LAST:event_AgregarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
@@ -201,10 +203,10 @@ public class Roles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar;
     private javax.swing.JButton Editar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTable Rol;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

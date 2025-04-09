@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Models/EstadoAprobacion.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/EstadoAprobacionService.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Controllers/EstadoAprobacionController.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/EstadoAprovecionViews/EstadoAprobacion.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/EstadoAprovecionViews/AgregarEstadoAprobacion.java</file>
-            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Views/EstadoAprovecionViews/EditarEstadoAprobacion.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Models/CategoriaPresupuesto.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Services/CategoriaPresupuestoService.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Controllers/CategoriaPresupuestoController.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Viwes/CategoriaPresupuestoViews/CategoriaPresupuesto.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Viwes/CategoriaPresupuestoViews/AgregarCategoriaPresupuesto.java</file>
+            <file>file:/C:/UninpahuRepositoryJFRB_Sem6/PresupuestoHillsProject/src/Viwes/CategoriaPresupuestoViews/EditarCategoriaPresupuesto.java</file>
         </group>
     </open-files>
 </project-private>
