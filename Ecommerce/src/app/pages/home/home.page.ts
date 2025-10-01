@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
 import { FormularioHomeComponent } from 'src/app/components/formulario-home/formulario-home.component';
+import { ProductoService } from 'src/app/data/services/producto-service';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,13 @@ import { FormularioHomeComponent } from 'src/app/components/formulario-home/form
 })
 export class HomePage implements OnInit {
 
+  //productoService = inject(ProductoService)
+  //datoObtenido : string = ""
+
   constructor() { }
 
   ngOnInit() {
+    //this.datoObtenido = this.productoService.datoGuardado
   }
 
 }
