@@ -1,0 +1,34 @@
+<ion-card-content>
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input [(ngModel)]="producto.title"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input type="number" [(ngModel)]="producto.price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input [(ngModel)]="producto.description"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Categoría</ion-label>
+        <ion-input [(ngModel)]="producto.category"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Imagen(URL)</ion-label>
+        <ion-input [(ngModel)]="producto.image"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+
+    <ion-button xpand="block" color="success" (click)="guardarForm()">GUARDAR</ion-button>
+
+</ion-card-content>

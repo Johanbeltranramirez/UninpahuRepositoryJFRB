@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>infoUsuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">infoUsuario</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<div class="card">
+ 
+  <img [src]="usuario.foto" alt="Foto de perfil" class="perfil-img">
+
+  <ul>
+  <li class="nombre-item">
+    {{ usuario.nombres }} {{ usuario.apellidos }}
+  </li>
+  <li class="data-item"><strong>Cargo en la organización:</strong> {{ usuario.cargo  }}</li>
+  <li class="data-item"><strong>Unidad:</strong> {{ usuario.unidad  }}</li>
+  <li class="data-item"><strong>Correo:</strong> {{ usuario.email }}</li>
+  <li class="data-item"><strong>Fecha de nacimiento:</strong> {{ usuario.fechaNacimiento }}</li>
+</ul>
+
+<ion-button color="success" (click)="prueba()">AGREGAR</ion-button>
+
+<!--
+<ion-input [disabled]="usuario.activo" [(ngModel)] ="usuario.dato">Input</ion-input>
+-->
+<ion-button color="success"  (click)="inactivar()">INACTIVAR</ion-button>
+<ion-button color="success" (click)="imprimir()">IMPRIMIR</ion-button>
+</div>
+
+</ion-content>

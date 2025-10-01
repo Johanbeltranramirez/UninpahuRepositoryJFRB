@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>crear-producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">crear-producto</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-formulario-producto (enviarACrear)="recibirProducto($event)"></app-formulario-producto>
+  <app-lista-productos [variableEntradaPadre]="listaVaciaProd" ></app-lista-productos>
+
+</ion-content>
