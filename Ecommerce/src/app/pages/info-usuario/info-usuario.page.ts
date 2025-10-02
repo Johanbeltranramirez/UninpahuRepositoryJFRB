@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
-import { ProductoService } from 'src/app/data/services/producto-service';
+//import { ProductoService } from 'src/app/data/services/producto-service';
 
 @Component({
   selector: 'app-info-usuario',
