@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonAvatar } from '@ionic/angular/standalone';
 import { Producto } from 'src/app/data/interfaces/producto.model';
+import { ProductoService } from 'src/app/data/services/producto-service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -13,11 +14,11 @@ import { Producto } from 'src/app/data/interfaces/producto.model';
 
 export class ListaProductosComponent  implements OnInit {
 
-  activo: boolean = false;
+  //activo: boolean = false;
  //persona: Persona;
-  listaFrutas: string[] = ["Pera", "Manzana", "Fresa", "Piña"];
+  //listaFrutas: string[] = ["Pera", "Manzana", "Fresa", "Piña"];
 
-
+  productoService = inject(ProductoService)
   constructor() { }
 
   ngOnInit() {}
@@ -43,15 +44,29 @@ export class ListaProductosComponent  implements OnInit {
   ];*/
 
   @Input() variableEntradaPadre: Producto[];
+  @Input() modoCarrito: boolean = false;
 
-  cambiarValor(){
+  /*cambiarValor(){
     //let productoNuevo: Producto = new Producto(2, "Cartuchera", 1200);
     //this.producto = new Producto(1, "Lapiz", 500);
-    /*this.producto = {
+    this.producto = {
       id: 1,
       precio: 300
-    }*/
+    }
 
     this.activo = !this.activo;
+  }*/
+
+comprarProducto(producto: Producto) {
+    this.productoService.agregarAlCarrito(producto);
+    console.log('Producto agregado al carrito:', producto.title);
   }
+
+  eliminarProducto(id: number) {
+    this.productoService.eliminarDelCarrito(id);
+    this.variableEntradaPadre = this.variableEntradaPadre.filter(p => p.id !== id);
+    console.log('Producto eliminado del carrito:', id);
+  }
+
+
 }

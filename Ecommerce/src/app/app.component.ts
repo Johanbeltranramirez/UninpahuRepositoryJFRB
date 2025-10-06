@@ -17,6 +17,7 @@ export class AppComponent {
     { title: 'User', url: '/info-usuario', icon: 'person-circle-outline' },
     { title: 'Home', url: '/home', icon: 'home-outline' },
     { title: 'Shop', url: '/shop-products', icon: 'paper-plane' },
+    { title: 'Shopping cart', url: '/carrito-compras', icon: 'paper-plane' },
     { title: 'Create', url: '/crear-producto', icon: 'paper-plane' },
 
   ];

@@ -41,6 +41,6 @@ export class CrearProductoPage implements OnInit {
    this.productoService.guardarProducto(nuevoProducto);
 
 }
-
+ 
   
 }

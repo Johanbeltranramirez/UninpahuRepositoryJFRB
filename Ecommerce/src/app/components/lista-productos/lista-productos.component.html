@@ -24,18 +24,19 @@
 
 </div>
 -->
+
 <div class="prod-card" *ngFor="let producto of variableEntradaPadre; let i = index">
   <div class="prod-image">
     <img [src]="producto.image" alt="Imagen de producto" />
   </div>
+
   <div class="prod-info">
     <h3 class="prod-name">{{ producto.title }}</h3>
     <p class="prod-material"><strong>Materiales:</strong> {{ producto.description }}</p>
-    <p class="prod-brand">
-      <strong>Categoria:</strong> {{ producto.category }}
-    </p>
-    <p class="prod-price">
-      <strong>Precio:</strong> COL$ {{ producto.price }}
-    </p>
+    <p class="prod-brand"><strong>Categoría:</strong> {{ producto.category }}</p>
+    <p class="prod-price"><strong>Precio:</strong> COL$ {{ producto.price }}</p>
+
+    <ion-button *ngIf="!modoCarrito" expand="block" color="success" (click)="comprarProducto(producto)">Comprar</ion-button>
+    <ion-button *ngIf="modoCarrito" expand="block" color="danger" (click)="eliminarProducto(producto.id)">Eliminar</ion-button>
   </div>
-</div>  
+</div>

@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Carrito de Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Carrito de Compras</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-lista-productos [variableEntradaPadre]="productosCarrito" [modoCarrito]="true"></app-lista-productos>
+
+</ion-content>

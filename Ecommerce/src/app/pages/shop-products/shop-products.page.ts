@@ -16,7 +16,7 @@ import { ProductoService } from 'src/app/data/services/producto-service';
 export class ShopProductsPage implements OnInit {
 
   listaProductos: Producto [] = [
-      {
+  {
     id: 1,
     title: "Lápices",
     price: 1500,
