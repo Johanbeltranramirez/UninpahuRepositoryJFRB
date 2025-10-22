@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { 
   IonButton, IonInput, IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonItem, IonLabel, IonList, IonAvatar 
@@ -12,7 +12,7 @@ import { Producto } from 'src/app/data/interfaces/producto.model';
   templateUrl: './formulario-producto.component.html',
   styleUrls: ['./formulario-producto.component.scss'],
   standalone: true,
-  imports: [ CommonModule, FormsModule, IonButton, IonInput, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonItem, IonLabel, IonList, IonAvatar ]
+  imports: [ CommonModule, FormsModule, IonButton, IonInput, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonItem, IonLabel, IonList, IonAvatar, ReactiveFormsModule ]
 })
 export class FormularioProductoComponent  implements OnInit {
 
@@ -25,13 +25,31 @@ producto: Producto = {
     image: ''
   };
 
+  formProducto: FormGroup; 
+
   @Output() enviarACrear = new EventEmitter<Producto>();
+  private formReactivo = inject(FormBuilder);
 
   constructor() { }
 
   ngOnInit() {}
 
+    crearForm(){
+      this.formProducto = this.formReactivo.group({
+        producto: this.formReactivo.group({
+          title: ['Ingrese el título del producto', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+          price: ['Precio en COP', [Validators.required, Validators.minLength(2), Validators.maxLength(12)]],
+          description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(35)]],
+          category: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(25)]],
+          image: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(85)]]
+        })
+      })
+    }
+
     guardarForm() {
+      if(this.formProducto.valid)
+        console.log('Formulario', this.formProducto);
+
       console.log('Enviando producto desde el hijo:', this.producto);
       this.enviarACrear.emit(this.producto);
 

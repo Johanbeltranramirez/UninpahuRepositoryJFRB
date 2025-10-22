@@ -1,5 +1,5 @@
 <ion-card-content>
-    <ion-list>
+    <!--<ion-list>
 
       <ion-item>
         <ion-label position="floating">Título</ion-label>
@@ -29,6 +29,39 @@
     </ion-list>
 
 
-    <ion-button xpand="block" color="success" (click)="guardarForm()">GUARDAR</ion-button>
+    <ion-button xpand="block" color="success" (click)="guardarForm()">GUARDAR</ion-button>-->
+
+    <form [formGroup]="formProducto" (ngSubmit)="guardarForm()">
+
+      <div formGroupName="producto">
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input formControlName="title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Precio</ion-label>
+          <ion-input type="number" formControlName="price"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-input formControlName="description"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Categoría</ion-label>
+          <ion-input formControlName="category"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Imagen(URL)</ion-label>
+          <ion-input formControlName="image"></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button expand="block" color="success" type="submit">GUARDAR</ion-button>
+    </form>
+
 
 </ion-card-content>
