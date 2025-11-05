@@ -1,3 +1,5 @@
+import { Rating } from "./rating";
+
 export interface Producto{
     id: number,
     title: string,
@@ -5,4 +7,5 @@ export interface Producto{
     description: string,
     category: string,
     image: string,
+    rating: Rating
 }
