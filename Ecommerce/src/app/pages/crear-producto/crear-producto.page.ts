@@ -23,14 +23,7 @@ export class CrearProductoPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    //this.listaVaciaProd = this.productoService.listaVaciaProd
-    traerProducto(){
-      this.productoService.getProducto().subscribe({
-        next: (data) => {
-          console.log(data)
-        }
-      })
-    }
+    this.listaVaciaProd = this.productoService.listaVaciaProd
 
   }
 
@@ -72,6 +65,14 @@ export class CrearProductoPage implements OnInit {
 
         error: (err) => {
           console.log("¡ERROR!", err)
+        }
+      })
+    }
+
+    traerProducto(){
+      this.productoService.getProducto().subscribe({
+        next: (data) => {
+          console.log(data)
         }
       })
     }

@@ -11,6 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-formulario-producto (enviarACrear)="recibirProducto($event)"></app-formulario-producto>
+  <!--<app-formulario-producto (enviarACrear)="recibirProducto($event)"></app-formulario-producto>-->
+  <app-formulario-producto (enviarACrear)="traerProducto($event)"></app-formulario-producto>
   <app-lista-productos [variableEntradaPadre]="listaVaciaProd" ></app-lista-productos>
 </ion-content>
