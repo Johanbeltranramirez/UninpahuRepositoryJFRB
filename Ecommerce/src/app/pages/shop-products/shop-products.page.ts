@@ -15,7 +15,7 @@ import { ProductoService } from 'src/app/data/services/producto-service';
 })
 export class ShopProductsPage implements OnInit {
 
-  listaProductos: Producto [] = [
+ /* listaProductos: Producto [] = [
   {
     id: 1,
     title: "Lápices",
@@ -97,14 +97,27 @@ export class ShopProductsPage implements OnInit {
     image: "https://acdn-us.mitiendanube.com/stores/399/204/products/441-588d55a131f037487c16351970324577-640-0.webp"
   }
   
-  ]
+  ]*/
 
   listaVaciaProd: Producto[] = [];
   productoService = inject(ProductoService)
   constructor() { }
 
   ngOnInit() {
-    this.listaVaciaProd = this.productoService.listaVaciaProd
+    this.traerProducto();
   }
+
+  traerProducto() {
+      this.productoService.getProducto().subscribe({
+        next: (data) => {
+          const locales = this.productoService.obtenerProductosLocal();
+          this.listaVaciaProd = [...data, ...locales].sort((a, b) => b.id - a.id);
+          console.log("Productos obtenidos del hijo:", data);
+        }, 
+        error: (err) => {
+              console.error("Error al obtener productos:", err);
+            }
+      });
+    }
 
 }

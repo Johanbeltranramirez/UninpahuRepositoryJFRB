@@ -7,17 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  /*datoGuardado: string =""
-  listaTexto: string[] = []
 
-  guardarDato(dato: string){
-    this.listaTexto.push(dato)
-  }*/
  listaVaciaProd: Producto[] = [];
  listaCarrito: Producto[] = [];
 
  private http = inject(HttpClient)
- apiUrl = "https://fakestoreapi.com/docs#tag/Products/"
+ private apiUrl = 'https://fakestoreapi.com/products';
 
   guardarProducto(producto: Producto){
     this.listaVaciaProd.push(producto);
@@ -42,12 +37,20 @@ export class ProductoService {
     this.listaCarrito = [];
   }
 
-  getProducto(): Observable<Producto[]>{
+  getProducto(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.apiUrl);
   }
- 
-  crearProducto(producto: Producto): Observable<any>{
-    return this.http.post<any>(this.apiUrl, producto)
+
+  crearProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(this.apiUrl, producto);
+  }
+
+  guardarProductoLocal(producto: Producto) {
+    this.listaVaciaProd.push(producto);
+  }
+
+  obtenerProductosLocal(): Producto[] {
+    return this.listaVaciaProd;
   }
   
 }

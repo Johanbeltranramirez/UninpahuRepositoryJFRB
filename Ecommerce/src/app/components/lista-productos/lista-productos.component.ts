@@ -23,49 +23,21 @@ export class ListaProductosComponent  implements OnInit {
 
   ngOnInit() {}
 
-    /*listaPersonas: Persona [] = [
-    
-    {
-      id: 1,
-      nombre: "Melisa",
-      edad: 14
-    },
-    {
-      id: 2,
-      nombre: "Maicol",
-      edad: 42
-    },
-    {
-      id: 3,
-      nombre: "Anita",
-      edad: 72
-    }
-  
-  ];*/
 
   @Input() variableEntradaPadre: Producto[];
   @Input() modoCarrito: boolean = false;
 
-  /*cambiarValor(){
-    //let productoNuevo: Producto = new Producto(2, "Cartuchera", 1200);
-    //this.producto = new Producto(1, "Lapiz", 500);
-    this.producto = {
-      id: 1,
-      precio: 300
-    }
-
-    this.activo = !this.activo;
-  }*/
-
 comprarProducto(producto: Producto) {
     this.productoService.agregarAlCarrito(producto);
     console.log('Producto agregado al carrito:', producto.title);
+    alert('¡Producto agregado al carrito!');
   }
 
   eliminarProducto(id: number) {
     this.productoService.eliminarDelCarrito(id);
     this.variableEntradaPadre = this.variableEntradaPadre.filter(p => p.id !== id);
     console.log('Producto eliminado del carrito:', id);
+    alert('¡Producto eliminado del carrito!');
   }
 
 

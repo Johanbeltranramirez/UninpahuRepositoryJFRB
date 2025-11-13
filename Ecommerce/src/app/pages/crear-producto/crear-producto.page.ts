@@ -23,59 +23,41 @@ export class CrearProductoPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.listaVaciaProd = this.productoService.listaVaciaProd
-
+    this.traerProducto();
   }
 
-    /*recibirProducto(producto: Producto) {
-      console.log('Se recibió el producto en el padre:', producto);
 
-      const nuevoId = this.listaVaciaProd.length > 0
-        ? Math.max(...this.listaVaciaProd.map(p => p.id)) + 1
-        : 1;
-
-      const nuevoProducto: Producto = {
-        ...producto,
-        id: nuevoId
-      };
-
-      this.productoService.guardarProducto(nuevoProducto);
-
-    }*/
-
-    crearProducto(){
-      let nuevoProducto: Producto = {
-        id: 0,
-        title: "string",
-        price: 0.1,
-        description: "string",
-        category: "string",
-        image: "http://example.com",
-        rating: {
-          rate: 0,
-          count: 0
-        }
-      }
-
-      this.productoService.crearProducto(nuevoProducto).subscribe({
-        next: (data) => {
-          console.log("Producto Creado: ", data)
-          alert("Producto Creado")
-        },
-
-        error: (err) => {
-          console.log("¡ERROR!", err)
-        }
-      })
-    }
-
-    traerProducto(){
+    traerProducto() {
       this.productoService.getProducto().subscribe({
         next: (data) => {
-          console.log(data)
-        }
-      })
+          const locales = this.productoService.obtenerProductosLocal();
+          this.listaVaciaProd = [...data, ...locales].sort((a, b) => b.id - a.id);
+          console.log("Productos obtenidos del hijo:", data);
+        }, 
+        error: (err) => {
+              console.error("Error al obtener productos:", err);
+            }
+      });
     }
+
+    crearProducto(producto: Producto) {
+    const nuevoProducto: Producto = {
+      ...producto,
+      id: Date.now(),
+      rating: { rate: 0, count: 0 }
+    };
+
+    this.productoService.crearProducto(nuevoProducto).subscribe({
+      next: (data) => {
+        console.log('Producto creado satisfactoriamente:', data);
+        this.productoService.guardarProductoLocal(nuevoProducto);
+        this.listaVaciaProd.push(nuevoProducto);
+
+        alert('Producto agregado a la lista');
+      },
+      error: (err) => console.error('Error al crear producto:', err)
+    });
+  }
  
   
 }
