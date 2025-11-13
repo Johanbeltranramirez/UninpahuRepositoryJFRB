@@ -41,23 +41,22 @@ export class CrearProductoPage implements OnInit {
     }
 
     crearProducto(producto: Producto) {
-    const nuevoProducto: Producto = {
-      ...producto,
-      id: Date.now(),
-      rating: { rate: 0, count: 0 }
-    };
+      const nuevoProducto: Producto = {
+        ...producto,
+        id: Date.now(),
+        rating: { rate: 0, count: 0 }
+      };
 
-    this.productoService.crearProducto(nuevoProducto).subscribe({
-      next: (data) => {
-        console.log('Producto creado satisfactoriamente:', data);
-        this.productoService.guardarProductoLocal(nuevoProducto);
-        this.listaVaciaProd.push(nuevoProducto);
+      this.productoService.crearProducto(nuevoProducto).subscribe({
+        next: (data) => {
+          console.log('Producto creado satisfactoriamente:', data);
+          this.productoService.guardarProductoLocal(nuevoProducto);
+          this.listaVaciaProd.push(nuevoProducto);
 
-        alert('Producto agregado a la lista');
-      },
-      error: (err) => console.error('Error al crear producto:', err)
-    });
-  }
+          alert('Producto agregado a la lista');
+        },
+        error: (err) => console.error('Error al crear producto:', err)
+      });
+    }
  
-  
 }

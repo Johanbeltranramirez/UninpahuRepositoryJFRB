@@ -27,11 +27,11 @@ export class ListaProductosComponent  implements OnInit {
   @Input() variableEntradaPadre: Producto[];
   @Input() modoCarrito: boolean = false;
 
-comprarProducto(producto: Producto) {
-    this.productoService.agregarAlCarrito(producto);
-    console.log('Producto agregado al carrito:', producto.title);
-    alert('¡Producto agregado al carrito!');
-  }
+  comprarProducto(producto: Producto) {
+      this.productoService.agregarAlCarrito(producto);
+      console.log('Producto agregado al carrito:', producto.title);
+      alert('¡Producto agregado al carrito!');
+    }
 
   eliminarProducto(id: number) {
     this.productoService.eliminarDelCarrito(id);
