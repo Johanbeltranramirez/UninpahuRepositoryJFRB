@@ -1,4 +1,4 @@
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { IonButton, IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonImg, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Producto } from 'src/app/data/interfaces/producto.model';

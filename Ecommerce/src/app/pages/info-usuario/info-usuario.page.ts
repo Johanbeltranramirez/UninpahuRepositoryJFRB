@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonButtons,IonMenuButton,IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
-//import { ProductoService } from 'src/app/data/services/producto-service';
 
 @Component({
   selector: 'app-info-usuario',
@@ -26,8 +25,6 @@ export class InfoUsuarioPage implements OnInit {
     dato: ''
   };
 
-  //productoService = inject(ProductoService)
-
   prueba(){
       alert("¡Se Agregó con éxito!")
       this.usuario.foto = './assets/prueba.jpeg'
@@ -48,7 +45,4 @@ export class InfoUsuarioPage implements OnInit {
   ngOnInit() {
   }
 
-   /*guardarServicio(){
-      this.productoService.guardarDato(this.usuario.dato)
-    }*/
 }
