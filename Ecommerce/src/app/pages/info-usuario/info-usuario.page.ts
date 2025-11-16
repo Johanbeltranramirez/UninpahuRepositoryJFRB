@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
+import { IonButtons,IonMenuButton,IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
 //import { ProductoService } from 'src/app/data/services/producto-service';
 
 @Component({
@@ -9,7 +9,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/a
   templateUrl: './info-usuario.page.html',
   styleUrls: ['./info-usuario.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton]
+  imports: [IonButtons,IonMenuButton,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton]
 })
 
 export class InfoUsuarioPage implements OnInit {

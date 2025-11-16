@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
+import { IonButtons,IonMenuButton,IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
 import { FormularioHomeComponent } from 'src/app/components/formulario-home/formulario-home.component';
 import { ProductoService } from 'src/app/data/services/producto-service';
 
@@ -10,8 +10,7 @@ import { ProductoService } from 'src/app/data/services/producto-service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [ CommonModule, FormsModule, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, FormularioHomeComponent
-  ]
+  imports: [IonButtons,IonMenuButton,CommonModule, FormsModule, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, FormularioHomeComponent]
 
 })
 export class HomePage implements OnInit {

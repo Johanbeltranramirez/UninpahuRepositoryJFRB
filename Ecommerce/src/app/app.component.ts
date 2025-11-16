@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonRouterLink } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, personCircleOutline, homeOutline } from 'ionicons/icons';
+import { personCircleOutline, personCircleSharp,homeOutline, homeSharp, storefrontOutline, storefrontSharp, cartOutline, cartSharp, createOutline, createSharp } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +14,15 @@ import { mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutlin
 })
 export class AppComponent {
   public appPages = [
-    { title: 'User', url: '/info-usuario', icon: 'person-circle-outline' },
-    { title: 'Home', url: '/home', icon: 'home-outline' },
-    { title: 'Shop', url: '/shop-products', icon: 'paper-plane' },
-    { title: 'Shopping cart', url: '/carrito-compras', icon: 'paper-plane' },
-    { title: 'Create', url: '/crear-producto', icon: 'paper-plane' },
+    { title: 'User', url: '/info-usuario', icon: 'person-circle' },
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Shop', url: '/shop-products', icon: 'storefront' },
+    { title: 'Shopping cart', url: '/carrito-compras', icon: 'cart' },
+    { title: 'Create', url: '/crear-producto', icon: 'create' },
 
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
   constructor() {
-    addIcons({ mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, personCircleOutline, homeOutline });
+    addIcons({ personCircleOutline, personCircleSharp, homeOutline, homeSharp, storefrontOutline, storefrontSharp, cartOutline, cartSharp, createOutline, createSharp });
   }
 }

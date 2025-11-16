@@ -1,42 +1,26 @@
-<!--<div *ngIf="activo; else ContenidoElse">
-  Mostrar contenido
-</div>
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let producto of variableEntradaPadre; let i = index">
+      <ion-card>
+        <ion-img [src]="producto.image" alt="Imagen de producto"></ion-img>
 
-<ng-template #ContenidoElse>
+        <ion-card-header>
+          <ion-card-title>{{ producto.title }}</ion-card-title>
+        </ion-card-header>
 
-  No Mostrar contenido **************
-</ng-template>
-<ion-button (click)="cambiarValor()">ACTIVAR</ion-button>
+        <ion-card-content>
+          <p><strong>Materiales:</strong> {{ producto.description }}</p>
+          <p><strong>Categoría:</strong> {{ producto.category }}</p>
+          <p><strong>Precio:</strong> COL$ {{ producto.price | currency:'COP':'':'1.0-0' }}</p>
 
-<div *ngFor="let fruta of listaFrutas; let i = index">
-
-<h1>FRUTA</h1>
-<label>{{fruta}}</label>
-
-</div>
--->
-
-<!--<div *ngFor="let objeto of listaObjetos">
-
-<h1>PERSONA</h1>
-<p>Hola, {{objeto.nombre}}</p>
-<p>tu edad es: {{objeto.edad}}</p>
-
-</div>
--->
-
-<div class="prod-card" *ngFor="let producto of variableEntradaPadre; let i = index">
-  <div class="prod-image">
-    <img [src]="producto.image" alt="Imagen de producto" />
-  </div>
-
-  <div class="prod-info">
-    <h3 class="prod-name">{{ producto.title }}</h3>
-    <p class="prod-material"><strong>Materiales:</strong> {{ producto.description }}</p>
-    <p class="prod-brand"><strong>Categoría:</strong> {{ producto.category }}</p>
-    <p class="prod-price"><strong>Precio:</strong> COL$ {{ producto.price }}</p>
-
-    <ion-button *ngIf="!modoCarrito" expand="block" color="success" (click)="comprarProducto(producto)">Comprar</ion-button>
-    <ion-button *ngIf="modoCarrito" expand="block" color="danger" (click)="eliminarProducto(producto.id)">Eliminar</ion-button>
-  </div>
-</div>
+          <ion-button *ngIf="!modoCarrito" expand="block" color="success" (click)="comprarProducto(producto)">
+            Comprar
+          </ion-button>
+          <ion-button *ngIf="modoCarrito" expand="block" color="danger" (click)="eliminarProducto(producto.id)">
+            Eliminar
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

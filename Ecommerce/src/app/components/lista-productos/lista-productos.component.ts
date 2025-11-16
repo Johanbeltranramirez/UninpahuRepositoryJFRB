@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonAvatar } from '@ionic/angular/standalone';
+import { IonButton, IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonImg, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Producto } from 'src/app/data/interfaces/producto.model';
 import { ProductoService } from 'src/app/data/services/producto-service';
 
@@ -9,7 +9,7 @@ import { ProductoService } from 'src/app/data/services/producto-service';
   templateUrl: './lista-productos.component.html',
   styleUrls: ['./lista-productos.component.scss'],
   standalone: true,
-  imports: [IonButton, CommonModule, IonAvatar]
+  imports: [ CommonModule, IonButton, IonAvatar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonImg]
 })
 
 export class ListaProductosComponent  implements OnInit {
@@ -39,6 +39,5 @@ export class ListaProductosComponent  implements OnInit {
     console.log('Producto eliminado del carrito:', id);
     alert('¡Producto eliminado del carrito!');
   }
-
 
 }

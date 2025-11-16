@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonButtons,IonMenuButton,IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ListaProductosComponent } from 'src/app/components/lista-productos/lista-productos.component';
 import { Producto } from 'src/app/data/interfaces/producto.model';
 import { ProductoService } from 'src/app/data/services/producto-service';
@@ -11,7 +11,7 @@ import { ProductoService } from 'src/app/data/services/producto-service';
   templateUrl: './shop-products.page.html',
   styleUrls: ['./shop-products.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ListaProductosComponent]
+  imports: [IonButtons,IonMenuButton,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ListaProductosComponent]
 })
 export class ShopProductsPage implements OnInit {
 
