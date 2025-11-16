@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^18.2.13",
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/router": "^18.2.13",
+    "@capacitor/android": "^7.4.4",
     "@capacitor/app": "7.0.2",
     "@capacitor/core": "7.4.2",
     "@capacitor/haptics": "7.0.2",
