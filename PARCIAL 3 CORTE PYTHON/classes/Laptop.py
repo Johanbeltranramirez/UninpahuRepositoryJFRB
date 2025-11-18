@@ -18,28 +18,16 @@ class Laptop(Dispositivo):
 
     def calcular_redimiento(self):
         rendimiento = (self.__ram_gb*self.__procesador_puntos)
-        return rendimiento / self.get_precio
+        return rendimiento / self.get_precio()
     
     def evaluar_costo_beneficio(self):
         calidad = self.calcular_redimiento()
 
-        if calidad > 2.0:
+        if calidad > 1.2:
             return "El laptop tiene excelente calidad con relación al precio xb"
 
-        elif calidad > 1.0:
+        elif calidad > 0.4:
             return "El laptop tiene una calidad media ;D"
         else:
             return "El laptop es de mala calidad con respecto al precio :("
-
-    def calcular_nivel(self):
-
-        nivel = (self.__ram_gb*2) + self.__procesador_puntos
-
-
-        if nivel >= 32:
-            return "Es multitarea con nivel alto."
-        elif nivel >= 16:
-            return "Es multitarea con nivel medio."
-        else:
-            return "Es multitarea con nivel bajo."
 

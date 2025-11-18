@@ -31,20 +31,10 @@ class Celular(Dispositivo):
 
         calidad = self.calcular_redimiento()
 
-        if calidad > 1.8:
+        if calidad > 0.7:
             return "El celular tiene excelente calidad con relación al precio xb"
-        elif calidad > 1.3:
+        elif calidad > 0.3:
             return "El celular tiene una calidad media ;D"
         else:
             return "El celular es de mala calidad con respecto al precio :("
 
-    def calcular_autonomia(self):
-
-        eficiencia = self.__bateria_amp/(self.__procesador_puntos+1)
-        
-        if eficiencia > 100:
-            return "Autonomia alta :)"
-        elif eficiencia > 60:
-            return "Autonomia media :v"
-        else:
-            return "Autonomia baja :C"

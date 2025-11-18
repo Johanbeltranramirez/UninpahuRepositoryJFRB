@@ -8,7 +8,7 @@ class Tienda:
         self.usuario = ""
 
     def iniciar(self):
-        self.usuario = input("Uusuario: ")
+        self.usuario = input("Usuario: ")
         print(f"Bienvenido {self.usuario}\n")
         self.mostrar_menu()
 
@@ -47,7 +47,7 @@ class Tienda:
                 print("Esta opción NO EXISTE")
 
     def registrar_celular(self):
-        cod = int(input("Ingrese el número de código: "))
+        cod = input("Ingrese el número de código: ")
         nom = input("Ingrese el nombre del dipositivo: ")
         tm = input("Ingrese la marca del dispositivo: ")
         cost = int(input("Ingrese el valor del dispositivo en pesos (sin puntos): "))
@@ -57,10 +57,10 @@ class Tienda:
 
         celular = Celular(cod, nom, tm, cost, carga, cam, pro)
         self.dispositivos.append(celular)
-        print("Celular ingresado correctamente.")
+        print("\n Celular ingresado correctamente.")
 
     def registrar_tablet(self):
-        cod = int(input("Ingrese el número de código: "))
+        cod = input("Ingrese el número de código: ")
         nom = input("Ingrese el nombre del dipositivo: ")
         tm = input("Ingrese la marca del dispositivo: ")
         cost = int(input("Ingrese el valor del dispositivo en pesos (sin puntos): "))
@@ -68,10 +68,10 @@ class Tienda:
 
         tablet = Tablet(cod, nom, tm, cost, res)
         self.dispositivos.append(tablet)
-        print("Tablet ingresado correctamente.")
+        print("\n Tablet ingresado correctamente.")
 
     def registrar_laptop(self):
-        cod = int(input("Ingrese el número de código: "))
+        cod = input("Ingrese el número de código: ")
         nom = input("Ingrese el nombre del dipositivo: ")
         tm = input("Ingrese la marca del dispositivo: ")
         cost = int(input("Ingrese el valor del dispositivo en pesos (sin puntos): "))
@@ -80,7 +80,7 @@ class Tienda:
 
         laptop = Laptop(cod, nom, tm, cost, ramgb, pro)
         self.dispositivos.append(laptop)
-        print("Laptop ingresado correctamente.")
+        print("\n Laptop ingresado correctamente.")
 
     def datos_dispositivo(self, dispositivo):
         cod = dispositivo.get_codProd()
@@ -93,30 +93,28 @@ class Tienda:
 
     def mostrar_dispositivos(self):
         if not self.dispositivos:
-            print("No hay registros en el sistema...")
+            print("\n No hay registros en el sistema...")
             return
         print("\n Dispositivos registrados:\n")
         for dis in self.dispositivos:
             self.datos_dispositivo(dis)
 
     def buscar_codigo(self):
-        entrada = input("Ingrese el código del dispositivo que quiere encontrar: ")
-        codigo_busqueda = entrada.strip().upper()
+        codigo_ingresado = input("Ingrese el código del dispositivo que quiere encontrar: ")
+        codigo_busqueda = codigo_ingresado.strip().upper()
         encontrado = False
-        for i in range(len(self.dispositivos)):
-            dis = self.dispositivos[i]
-            if hasattr(dis, "get_codProd()"):
-                cod_actual = dis.get_codProd().strip().upper()
-                if cod_actual == codigo_busqueda:
-                    print(f"\n **********Dispositivo encontrado**********")
-                    self.mostrar_dispositivo(dis)
+
+        for dispositivo in self.dispositivos:
+            if hasattr(dispositivo, "get_codProd"):
+                codigo_actual = dispositivo.get_codProd().strip().upper()
+                if codigo_actual == codigo_busqueda:
+                    print("\n********** Dispositivo encontrado **********")
+                    self.datos_dispositivo(dispositivo)
                     encontrado = True
-                    break
         if not encontrado:
             print("No hay datos para mostrar :(")
 
     def ordenar_criterio(self, criterio):
-
         if criterio != "precio" and criterio != "nombre" and criterio != "rendimiento":
             print("Criterio no es válido")
             return
@@ -124,26 +122,25 @@ class Tienda:
 
         cantidad = len(self.dispositivos)
         for pasada in range(cantidad):
-            for i in range(cantidad - pasada - 1):
+            for i in range(cantidad-pasada-1):
                 primero = self.dispositivos[i]
-                segundo = self.dispositivos[i + 1]
+                segundo = self.dispositivos[i+1]
 
                 if criterio == "precio":
                     if primero.get_precio() > segundo.get_precio():
-
-                        self.dispositivos[i], self.dispositivos[i + 1] = segundo, primero
+                        self.dispositivos[i], self.dispositivos[i+1] = segundo, primero
 
                 elif criterio == "nombre":
                     nombre1 = primero.get_nombre().lower()
                     nombre2 = segundo.get_nombre().lower()
                     if nombre1 > nombre2:
-                        self.dispositivos[i], self.dispositivos[i + 1] = segundo, primero
+                        self.dispositivos[i], self.dispositivos[i+1] = segundo, primero
 
                 elif criterio == "rendimiento":
                     rend1 = primero.calcular_redimiento()
                     rend2 = segundo.calcular_redimiento()
                     if rend1 < rend2:
-                        self.dispositivos[i], self.dispositivos[i + 1] = segundo, primero
+                        self.dispositivos[i], self.dispositivos[i+1] = segundo, primero
         self.mostrar_dispositivos()
 
     def mostrar_mayor_rendimiento(self):
@@ -157,7 +154,6 @@ class Tienda:
             if not ordenados:
                 ordenados.append(actual)
                 continue
-
             for n in range(len(ordenados)):
                 rendimiento_actual = actual.calcular_redimiento()
                 comparamiento = ordenados[n].calcular_redimiento()
@@ -173,6 +169,7 @@ class Tienda:
 
         print("\n ¿Cuál tiene mejor rendimiento?")
         print(f"Tipo del dispositivo: {mayor.__class__.__name__}")
+        print(f"Nombre del dispositivo: {mayor.get_nombre()}")
         print(f"Su rendimiento es de: {mayor.calcular_redimiento()}")
         print(f"Su calidad: {mayor.evaluar_costo_beneficio()}")
 
